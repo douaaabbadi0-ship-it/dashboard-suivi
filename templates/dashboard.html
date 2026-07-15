@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard KPIs — PFA 107A</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <div class="sys-bar"><span class="dot"></span> Analyse terminée</div>
+    <p><a href="{{ url_for('index') }}">← Nouvelle analyse</a></p>
+
+    <div id="status" class="status"></div>
+
+    <div id="dashboard" class="hidden"></div>
+
+    <a id="downloadBtn" class="hidden download-button" href="#" download>Télécharger le rapport PDF</a>
+  </div>
+
+  <script>
+    window.resultatsInitiaux = {{ resultats | tojson }};
+  </script>
+  <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+</body>
+</html>

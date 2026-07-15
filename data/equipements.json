@@ -1,0 +1,1377 @@
+[
+  {
+    "tag": "JF06-PE-107A-ASSAIN-000C01",
+    "categorie": "Assainissement",
+    "zone": "Assainissement"
+  },
+  {
+    "tag": "JF06-PE-107A-ASSAIN-000C01-CSUR-TI124A",
+    "categorie": "Assainissement",
+    "zone": "Assainissement"
+  },
+  {
+    "tag": "JF06-PE-107A-ASSAIN-000C01-GMOT-M",
+    "categorie": "Assainissement",
+    "zone": "Assainissement"
+  },
+  {
+    "tag": "JF06-PE-107A-ASSAIN-000C01-IPRO-PV013",
+    "categorie": "Assainissement",
+    "zone": "Assainissement"
+  },
+  {
+    "tag": "JF06-PE-107A-ASSAIN-000C02",
+    "categorie": "Assainissement",
+    "zone": "Assainissement"
+  },
+  {
+    "tag": "JF06-PE-107A-ASSAIN-000C02-CSUR-TI121A",
+    "categorie": "Assainissement",
+    "zone": "Assainissement"
+  },
+  {
+    "tag": "JF06-PE-107A-ASSAIN-000C02-GMOT-M",
+    "categorie": "Assainissement",
+    "zone": "Assainissement"
+  },
+  {
+    "tag": "JF06-PE-107A-ASSAIN-000S11",
+    "categorie": "Assainissement",
+    "zone": "Assainissement"
+  },
+  {
+    "tag": "JF06-PE-107A-ASSAIN-000S12",
+    "categorie": "Assainissement",
+    "zone": "Assainissement"
+  },
+  {
+    "tag": "JF06-PE-107A-ASSAIN-000S13",
+    "categorie": "Assainissement",
+    "zone": "Assainissement"
+  },
+  {
+    "tag": "JF06-PE-107A-BROYAG-000B01",
+    "categorie": "Broyage",
+    "zone": "Broyage"
+  },
+  {
+    "tag": "JF06-PE-107A-BROYAG-000B02",
+    "categorie": "Broyage",
+    "zone": "Broyage"
+  },
+  {
+    "tag": "JF06-PE-107A-BROYAG-000B02-GMOT-M1",
+    "categorie": "Broyage",
+    "zone": "Broyage"
+  },
+  {
+    "tag": "JF06-PE-107A-BROYAG-000B03",
+    "categorie": "Broyage",
+    "zone": "Broyage"
+  },
+  {
+    "tag": "JF06-PE-107A-BROYAG-000B04",
+    "categorie": "Broyage",
+    "zone": "Broyage"
+  },
+  {
+    "tag": "JF06-PE-107A-CIRCUI-NH3",
+    "categorie": "Circuit",
+    "zone": "Circuit"
+  },
+  {
+    "tag": "JF06-PE-107A-CIRCUI-NH3LIQ-SOUP-PSV049",
+    "categorie": "Circuit",
+    "zone": "Circuit"
+  },
+  {
+    "tag": "JF06-PE-107A-CLASSI-000C03",
+    "categorie": "Classification",
+    "zone": "Classification"
+  },
+  {
+    "tag": "JF06-PE-107A-CLASSI-000C03-CSUR-TI109",
+    "categorie": "Classification",
+    "zone": "Classification"
+  },
+  {
+    "tag": "JF06-PE-107A-CLASSI-000C03-GMOT-D",
+    "categorie": "Classification",
+    "zone": "Classification"
+  },
+  {
+    "tag": "JF06-PE-107A-CLASSI-000C03-GMOT-M",
+    "categorie": "Classification",
+    "zone": "Classification"
+  },
+  {
+    "tag": "JF06-PE-107A-CLASSI-000C04",
+    "categorie": "Classification",
+    "zone": "Classification"
+  },
+  {
+    "tag": "JF06-PE-107A-CLASSI-000C04-CSUR-TI126A",
+    "categorie": "Classification",
+    "zone": "Classification"
+  },
+  {
+    "tag": "JF06-PE-107A-CLASSI-000C04-GMOT-M",
+    "categorie": "Classification",
+    "zone": "Classification"
+  },
+  {
+    "tag": "JF06-PE-107A-CLASSI-000C04-IPRO-PV017",
+    "categorie": "Classification",
+    "zone": "Classification"
+  },
+  {
+    "tag": "JF06-PE-107A-CLASSI-000H01",
+    "categorie": "Classification",
+    "zone": "Classification"
+  },
+  {
+    "tag": "JF06-PE-107A-CLASSI-000H01-GMOT-UF",
+    "categorie": "Classification",
+    "zone": "Classification"
+  },
+  {
+    "tag": "JF06-PE-107A-CLASSI-000H02",
+    "categorie": "Classification",
+    "zone": "Classification"
+  },
+  {
+    "tag": "JF06-PE-107A-CLASSI-000H02-GMOT-UF",
+    "categorie": "Classification",
+    "zone": "Classification"
+  },
+  {
+    "tag": "JF06-PE-107A-CLASSI-000H03",
+    "categorie": "Classification",
+    "zone": "Classification"
+  },
+  {
+    "tag": "JF06-PE-107A-CLASSI-000H04",
+    "categorie": "Classification",
+    "zone": "Classification"
+  },
+  {
+    "tag": "JF06-PE-107A-CLASSI-000H04-GMOT-UF",
+    "categorie": "Classification",
+    "zone": "Classification"
+  },
+  {
+    "tag": "JF06-PE-107A-CLASSI-000H06-GMOT-UF",
+    "categorie": "Classification",
+    "zone": "Classification"
+  },
+  {
+    "tag": "JF06-PE-107A-CLASSI-000H07-GMOT-UF",
+    "categorie": "Classification",
+    "zone": "Classification"
+  },
+  {
+    "tag": "JF06-PE-107A-CLASSI-000H08-GMOT-UF",
+    "categorie": "Classification",
+    "zone": "Classification"
+  },
+  {
+    "tag": "JF06-PE-107A-CLASSI-000H10",
+    "categorie": "Classification",
+    "zone": "Classification"
+  },
+  {
+    "tag": "JF06-PE-107A-CLASSI-000H10-GMOT-UF",
+    "categorie": "Classification",
+    "zone": "Classification"
+  },
+  {
+    "tag": "JF06-PE-107A-CLASSI-000H11",
+    "categorie": "Classification",
+    "zone": "Classification"
+  },
+  {
+    "tag": "JF06-PE-107A-CLASSI-000H11-GMOT-UF",
+    "categorie": "Classification",
+    "zone": "Classification"
+  },
+  {
+    "tag": "JF06-PE-107A-CLASSI-000H12",
+    "categorie": "Classification",
+    "zone": "Classification"
+  },
+  {
+    "tag": "JF06-PE-107A-CLASSI-000H12-GMOT-UF",
+    "categorie": "Classification",
+    "zone": "Classification"
+  },
+  {
+    "tag": "JF06-PE-107A-CLASSI-000H13",
+    "categorie": "Classification",
+    "zone": "Classification"
+  },
+  {
+    "tag": "JF06-PE-107A-CLASSI-000S01",
+    "categorie": "Classification",
+    "zone": "Classification"
+  },
+  {
+    "tag": "JF06-PE-107A-CLASSI-000S01-GMOT-M3",
+    "categorie": "Classification",
+    "zone": "Classification"
+  },
+  {
+    "tag": "JF06-PE-107A-CLASSI-000S02",
+    "categorie": "Classification",
+    "zone": "Classification"
+  },
+  {
+    "tag": "JF06-PE-107A-CLASSI-000S03",
+    "categorie": "Classification",
+    "zone": "Classification"
+  },
+  {
+    "tag": "JF06-PE-107A-CLASSI-000S04",
+    "categorie": "Classification",
+    "zone": "Classification"
+  },
+  {
+    "tag": "JF06-PE-107A-CLASSI-000S05",
+    "categorie": "Classification",
+    "zone": "Classification"
+  },
+  {
+    "tag": "JF06-PE-107A-CLASSI-000S06",
+    "categorie": "Classification",
+    "zone": "Classification"
+  },
+  {
+    "tag": "JF06-PE-107A-CLASSI-000S06-GMOT",
+    "categorie": "Classification",
+    "zone": "Classification"
+  },
+  {
+    "tag": "JF06-PE-107A-CLASSI-000S07",
+    "categorie": "Classification",
+    "zone": "Classification"
+  },
+  {
+    "tag": "JF06-PE-107A-CLASSI-000S07-GMOT",
+    "categorie": "Classification",
+    "zone": "Classification"
+  },
+  {
+    "tag": "JF06-PE-107A-CLASSI-000S07-GMOT-M4",
+    "categorie": "Classification",
+    "zone": "Classification"
+  },
+  {
+    "tag": "JF06-PE-107A-CLASSI-000S08",
+    "categorie": "Classification",
+    "zone": "Classification"
+  },
+  {
+    "tag": "JF06-PE-107A-CLASSI-000S08-GMOT-UF1",
+    "categorie": "Classification",
+    "zone": "Classification"
+  },
+  {
+    "tag": "JF06-PE-107A-CLASSI-000S10",
+    "categorie": "Classification",
+    "zone": "Classification"
+  },
+  {
+    "tag": "JF06-PE-107A-CLASSI-000S90",
+    "categorie": "Classification",
+    "zone": "Classification"
+  },
+  {
+    "tag": "JF06-PE-107A-CLASSI-000T06",
+    "categorie": "Classification",
+    "zone": "Classification"
+  },
+  {
+    "tag": "JF06-PE-107A-CLASSI-000T06-GMOT",
+    "categorie": "Classification",
+    "zone": "Classification"
+  },
+  {
+    "tag": "JF06-PE-107A-CLASSI-000T06-GMOT-BC",
+    "categorie": "Classification",
+    "zone": "Classification"
+  },
+  {
+    "tag": "JF06-PE-107A-COMBUS-000C05",
+    "categorie": "Combustion",
+    "zone": "Combustion"
+  },
+  {
+    "tag": "JF06-PE-107A-COMBUS-000C05-GMOT",
+    "categorie": "Combustion",
+    "zone": "Combustion"
+  },
+  {
+    "tag": "JF06-PE-107A-COMBUS-000C05-GMOT-BC",
+    "categorie": "Combustion",
+    "zone": "Combustion"
+  },
+  {
+    "tag": "JF06-PE-107A-COMBUS-000C05-GMOT-M",
+    "categorie": "Combustion",
+    "zone": "Combustion"
+  },
+  {
+    "tag": "JF06-PE-107A-COMBUS-000C05-GMOT-V",
+    "categorie": "Combustion",
+    "zone": "Combustion"
+  },
+  {
+    "tag": "JF06-PE-107A-COMBUS-000C06",
+    "categorie": "Combustion",
+    "zone": "Combustion"
+  },
+  {
+    "tag": "JF06-PE-107A-COMBUS-000C06-GMOT",
+    "categorie": "Combustion",
+    "zone": "Combustion"
+  },
+  {
+    "tag": "JF06-PE-107A-COMBUS-000C06-GMOT-M",
+    "categorie": "Combustion",
+    "zone": "Combustion"
+  },
+  {
+    "tag": "JF06-PE-107A-CRIBLA-CRIBLE",
+    "categorie": "Criblage",
+    "zone": "Criblage"
+  },
+  {
+    "tag": "JF06-PE-107A-ENROBA-000M04",
+    "categorie": "Enrobage",
+    "zone": "Enrobage"
+  },
+  {
+    "tag": "JF06-PE-107A-ENROBA-000M04-GMOT-M",
+    "categorie": "Enrobage",
+    "zone": "Enrobage"
+  },
+  {
+    "tag": "JF06-PE-107A-ENROBA-000M04-IPRO-KV510",
+    "categorie": "Enrobage",
+    "zone": "Enrobage"
+  },
+  {
+    "tag": "JF06-PE-107A-ENROBA-000P08",
+    "categorie": "Enrobage",
+    "zone": "Enrobage"
+  },
+  {
+    "tag": "JF06-PE-107A-ENROBA-000P08-GMOT",
+    "categorie": "Enrobage",
+    "zone": "Enrobage"
+  },
+  {
+    "tag": "JF06-PE-107A-ENROBA-000P08-GMOT-M",
+    "categorie": "Enrobage",
+    "zone": "Enrobage"
+  },
+  {
+    "tag": "JF06-PE-107A-ENROBA-000T10",
+    "categorie": "Enrobage",
+    "zone": "Enrobage"
+  },
+  {
+    "tag": "JF06-PE-107A-ENROBA-000T10-GMOT-M",
+    "categorie": "Enrobage",
+    "zone": "Enrobage"
+  },
+  {
+    "tag": "JF06-PE-107A-ENROBA-00KP08",
+    "categorie": "Enrobage",
+    "zone": "Enrobage"
+  },
+  {
+    "tag": "JF06-PE-107A-ENROBA-00KP08-GMOT-M",
+    "categorie": "Enrobage",
+    "zone": "Enrobage"
+  },
+  {
+    "tag": "JF06-PE-107A-ETAGE_-000E04",
+    "categorie": "Étage",
+    "zone": "Étage"
+  },
+  {
+    "tag": "JF06-PE-107A-ETAGE_-000M03",
+    "categorie": "Étage",
+    "zone": "Étage"
+  },
+  {
+    "tag": "JF06-PE-107A-ETAGE_-CRIBLE-RPAR",
+    "categorie": "Étage",
+    "zone": "Étage"
+  },
+  {
+    "tag": "JF06-PE-107A-ETAGE_-D02D03",
+    "categorie": "Étage",
+    "zone": "Étage"
+  },
+  {
+    "tag": "JF06-PE-107A-ETAGE_-DSUR02",
+    "categorie": "Étage",
+    "zone": "Étage"
+  },
+  {
+    "tag": "JF06-PE-107A-ETAGE_-LAVSUP",
+    "categorie": "Étage",
+    "zone": "Étage"
+  },
+  {
+    "tag": "JF06-PE-107A-ETAGE_-PLVD04",
+    "categorie": "Étage",
+    "zone": "Étage"
+  },
+  {
+    "tag": "JF06-PE-107A-ETAGE_-TETES_-ELEV",
+    "categorie": "Étage",
+    "zone": "Étage"
+  },
+  {
+    "tag": "JF06-PE-107A-ETAGE_-VENTRU",
+    "categorie": "Étage",
+    "zone": "Étage"
+  },
+  {
+    "tag": "JF06-PE-107A-GRANUL-000M02",
+    "categorie": "Granulation",
+    "zone": "Granulation"
+  },
+  {
+    "tag": "JF06-PE-107A-GRANUL-000M03",
+    "categorie": "Granulation",
+    "zone": "Granulation"
+  },
+  {
+    "tag": "JF06-PE-107A-GRANUL-000M03-GGDG-BANDAGES",
+    "categorie": "Granulation",
+    "zone": "Granulation"
+  },
+  {
+    "tag": "JF06-PE-107A-GRANUL-000M03-GMOT-UF2",
+    "categorie": "Granulation",
+    "zone": "Granulation"
+  },
+  {
+    "tag": "JF06-PE-107A-GRANUL-000M03-IPRO-FV409",
+    "categorie": "Granulation",
+    "zone": "Granulation"
+  },
+  {
+    "tag": "JF06-PE-107A-GRANUL-000M03-SOUP-PSV002",
+    "categorie": "Granulation",
+    "zone": "Granulation"
+  },
+  {
+    "tag": "JF06-PE-107A-GRANUL-000M03-SOUP-PSV003",
+    "categorie": "Granulation",
+    "zone": "Granulation"
+  },
+  {
+    "tag": "JF06-PE-107A-GRANUL-000M03-SOUP-PSV004",
+    "categorie": "Granulation",
+    "zone": "Granulation"
+  },
+  {
+    "tag": "JF06-PE-107A-GRANUL-000M03-STRU-BALLON",
+    "categorie": "Granulation",
+    "zone": "Granulation"
+  },
+  {
+    "tag": "JF06-PE-107A-GRANUL-000M03-STRU-JETEE",
+    "categorie": "Granulation",
+    "zone": "Granulation"
+  },
+  {
+    "tag": "JF06-PE-107A-LAVAGE",
+    "categorie": "Lavage",
+    "zone": "Lavage"
+  },
+  {
+    "tag": "JF06-PE-107A-LAVAGE-000A02",
+    "categorie": "Lavage",
+    "zone": "Lavage"
+  },
+  {
+    "tag": "JF06-PE-107A-LAVAGE-000A02-GMOT-M",
+    "categorie": "Lavage",
+    "zone": "Lavage"
+  },
+  {
+    "tag": "JF06-PE-107A-LAVAGE-000A03",
+    "categorie": "Lavage",
+    "zone": "Lavage"
+  },
+  {
+    "tag": "JF06-PE-107A-LAVAGE-000A03-GMOT-M",
+    "categorie": "Lavage",
+    "zone": "Lavage"
+  },
+  {
+    "tag": "JF06-PE-107A-LAVAGE-000A04",
+    "categorie": "Lavage",
+    "zone": "Lavage"
+  },
+  {
+    "tag": "JF06-PE-107A-LAVAGE-000A04-GMOT-M",
+    "categorie": "Lavage",
+    "zone": "Lavage"
+  },
+  {
+    "tag": "JF06-PE-107A-LAVAGE-000A05",
+    "categorie": "Lavage",
+    "zone": "Lavage"
+  },
+  {
+    "tag": "JF06-PE-107A-LAVAGE-000A05-GMOT-M",
+    "categorie": "Lavage",
+    "zone": "Lavage"
+  },
+  {
+    "tag": "JF06-PE-107A-LAVAGE-000D01",
+    "categorie": "Lavage",
+    "zone": "Lavage"
+  },
+  {
+    "tag": "JF06-PE-107A-LAVAGE-000D01-CSUR",
+    "categorie": "Lavage",
+    "zone": "Lavage"
+  },
+  {
+    "tag": "JF06-PE-107A-LAVAGE-000D01-CSUR-TI113",
+    "categorie": "Lavage",
+    "zone": "Lavage"
+  },
+  {
+    "tag": "JF06-PE-107A-LAVAGE-000D01-IPRO-FV416",
+    "categorie": "Lavage",
+    "zone": "Lavage"
+  },
+  {
+    "tag": "JF06-PE-107A-LAVAGE-000D02",
+    "categorie": "Lavage",
+    "zone": "Lavage"
+  },
+  {
+    "tag": "JF06-PE-107A-LAVAGE-000D02-IPRO-TI137",
+    "categorie": "Lavage",
+    "zone": "Lavage"
+  },
+  {
+    "tag": "JF06-PE-107A-LAVAGE-000D04",
+    "categorie": "Lavage",
+    "zone": "Lavage"
+  },
+  {
+    "tag": "JF06-PE-107A-LAVAGE-000D04-CSUR-AIC308",
+    "categorie": "Lavage",
+    "zone": "Lavage"
+  },
+  {
+    "tag": "JF06-PE-107A-LAVAGE-000D04-CSUR-HF",
+    "categorie": "Lavage",
+    "zone": "Lavage"
+  },
+  {
+    "tag": "JF06-PE-107A-LAVAGE-000D04-CSUR-NH3",
+    "categorie": "Lavage",
+    "zone": "Lavage"
+  },
+  {
+    "tag": "JF06-PE-107A-LAVAGE-000D04-CSUR-PM10",
+    "categorie": "Lavage",
+    "zone": "Lavage"
+  },
+  {
+    "tag": "JF06-PE-107A-LAVAGE-000D04-CSUR-TI131",
+    "categorie": "Lavage",
+    "zone": "Lavage"
+  },
+  {
+    "tag": "JF06-PE-107A-LAVAGE-000D05-CSUR-AI309",
+    "categorie": "Lavage",
+    "zone": "Lavage"
+  },
+  {
+    "tag": "JF06-PE-107A-LAVAGE-000P02",
+    "categorie": "Lavage",
+    "zone": "Lavage"
+  },
+  {
+    "tag": "JF06-PE-107A-LAVAGE-000P02-GMOT",
+    "categorie": "Lavage",
+    "zone": "Lavage"
+  },
+  {
+    "tag": "JF06-PE-107A-LAVAGE-000P02-GMOT-M",
+    "categorie": "Lavage",
+    "zone": "Lavage"
+  },
+  {
+    "tag": "JF06-PE-107A-LAVAGE-000P03",
+    "categorie": "Lavage",
+    "zone": "Lavage"
+  },
+  {
+    "tag": "JF06-PE-107A-LAVAGE-000P03-GMOT-D",
+    "categorie": "Lavage",
+    "zone": "Lavage"
+  },
+  {
+    "tag": "JF06-PE-107A-LAVAGE-000P03-GMOT-M",
+    "categorie": "Lavage",
+    "zone": "Lavage"
+  },
+  {
+    "tag": "JF06-PE-107A-LAVAGE-000P03-GPOM-P",
+    "categorie": "Lavage",
+    "zone": "Lavage"
+  },
+  {
+    "tag": "JF06-PE-107A-LAVAGE-000P03-IPRO-HV568",
+    "categorie": "Lavage",
+    "zone": "Lavage"
+  },
+  {
+    "tag": "JF06-PE-107A-LAVAGE-000P04",
+    "categorie": "Lavage",
+    "zone": "Lavage"
+  },
+  {
+    "tag": "JF06-PE-107A-LAVAGE-000P04-GMOT-M",
+    "categorie": "Lavage",
+    "zone": "Lavage"
+  },
+  {
+    "tag": "JF06-PE-107A-LAVAGE-000P04-GPOM",
+    "categorie": "Lavage",
+    "zone": "Lavage"
+  },
+  {
+    "tag": "JF06-PE-107A-LAVAGE-000P04-IPRO-HV588",
+    "categorie": "Lavage",
+    "zone": "Lavage"
+  },
+  {
+    "tag": "JF06-PE-107A-LAVAGE-000P04-TUYT-CR",
+    "categorie": "Lavage",
+    "zone": "Lavage"
+  },
+  {
+    "tag": "JF06-PE-107A-LAVAGE-000P05",
+    "categorie": "Lavage",
+    "zone": "Lavage"
+  },
+  {
+    "tag": "JF06-PE-107A-LAVAGE-000P05-GMOT-M",
+    "categorie": "Lavage",
+    "zone": "Lavage"
+  },
+  {
+    "tag": "JF06-PE-107A-LAVAGE-000P06",
+    "categorie": "Lavage",
+    "zone": "Lavage"
+  },
+  {
+    "tag": "JF06-PE-107A-LAVAGE-000P06-GMOT-M",
+    "categorie": "Lavage",
+    "zone": "Lavage"
+  },
+  {
+    "tag": "JF06-PE-107A-LAVAGE-000P07",
+    "categorie": "Lavage",
+    "zone": "Lavage"
+  },
+  {
+    "tag": "JF06-PE-107A-LAVAGE-000P07-GMOT-M",
+    "categorie": "Lavage",
+    "zone": "Lavage"
+  },
+  {
+    "tag": "JF06-PE-107A-LAVAGE-000P07-GPOM-P",
+    "categorie": "Lavage",
+    "zone": "Lavage"
+  },
+  {
+    "tag": "JF06-PE-107A-LAVAGE-000P10",
+    "categorie": "Lavage",
+    "zone": "Lavage"
+  },
+  {
+    "tag": "JF06-PE-107A-LAVAGE-000P10-GMOT-M",
+    "categorie": "Lavage",
+    "zone": "Lavage"
+  },
+  {
+    "tag": "JF06-PE-107A-LAVAGE-000P10-GPOM-P",
+    "categorie": "Lavage",
+    "zone": "Lavage"
+  },
+  {
+    "tag": "JF06-PE-107A-LAVAGE-000R02",
+    "categorie": "Lavage",
+    "zone": "Lavage"
+  },
+  {
+    "tag": "JF06-PE-107A-LAVAGE-000R02-IPRO",
+    "categorie": "Lavage",
+    "zone": "Lavage"
+  },
+  {
+    "tag": "JF06-PE-107A-LAVAGE-000R02-IPRO-FV419",
+    "categorie": "Lavage",
+    "zone": "Lavage"
+  },
+  {
+    "tag": "JF06-PE-107A-LAVAGE-000R02-IPRO-FV425",
+    "categorie": "Lavage",
+    "zone": "Lavage"
+  },
+  {
+    "tag": "JF06-PE-107A-LAVAGE-000R03",
+    "categorie": "Lavage",
+    "zone": "Lavage"
+  },
+  {
+    "tag": "JF06-PE-107A-LAVAGE-00KP02",
+    "categorie": "Lavage",
+    "zone": "Lavage"
+  },
+  {
+    "tag": "JF06-PE-107A-LAVAGE-00KP02-GMOT-M",
+    "categorie": "Lavage",
+    "zone": "Lavage"
+  },
+  {
+    "tag": "JF06-PE-107A-LAVAGE-00KP02-IPRO-HV557",
+    "categorie": "Lavage",
+    "zone": "Lavage"
+  },
+  {
+    "tag": "JF06-PE-107A-LAVAGE-00KP03",
+    "categorie": "Lavage",
+    "zone": "Lavage"
+  },
+  {
+    "tag": "JF06-PE-107A-LAVAGE-00KP03-GMOT-BC",
+    "categorie": "Lavage",
+    "zone": "Lavage"
+  },
+  {
+    "tag": "JF06-PE-107A-LAVAGE-00KP03-GMOT-M",
+    "categorie": "Lavage",
+    "zone": "Lavage"
+  },
+  {
+    "tag": "JF06-PE-107A-LAVAGE-00KP04",
+    "categorie": "Lavage",
+    "zone": "Lavage"
+  },
+  {
+    "tag": "JF06-PE-107A-LAVAGE-00KP04-GMOT-D",
+    "categorie": "Lavage",
+    "zone": "Lavage"
+  },
+  {
+    "tag": "JF06-PE-107A-LAVAGE-00KP04-GMOT-M",
+    "categorie": "Lavage",
+    "zone": "Lavage"
+  },
+  {
+    "tag": "JF06-PE-107A-LAVAGE-00KP04-IPRO-HV585",
+    "categorie": "Lavage",
+    "zone": "Lavage"
+  },
+  {
+    "tag": "JF06-PE-107A-LAVAGE-PULVES",
+    "categorie": "Lavage",
+    "zone": "Lavage"
+  },
+  {
+    "tag": "JF06-PE-107A-LOCABT",
+    "categorie": "Local BT",
+    "zone": "Local BT"
+  },
+  {
+    "tag": "JF06-PE-107A-LOCABT-PD107A",
+    "categorie": "Local BT",
+    "zone": "Local BT"
+  },
+  {
+    "tag": "JF06-PE-107A-LOCABT-PD107A-TGBT-EB40_01",
+    "categorie": "Local BT",
+    "zone": "Local BT"
+  },
+  {
+    "tag": "JF06-PE-107A-LOCABT-PD107A-TGBT-EB41_01",
+    "categorie": "Local BT",
+    "zone": "Local BT"
+  },
+  {
+    "tag": "JF06-PE-107A-LOCABT-PD107A-TGBT-EB42_01",
+    "categorie": "Local BT",
+    "zone": "Local BT"
+  },
+  {
+    "tag": "JF06-PE-107A-LOCABT-PD107A-TGBT-EB42_02",
+    "categorie": "Local BT",
+    "zone": "Local BT"
+  },
+  {
+    "tag": "JF06-PE-107A-LOCABT-PD107A-TGBT-EG40_01",
+    "categorie": "Local BT",
+    "zone": "Local BT"
+  },
+  {
+    "tag": "JF06-PE-107A-LOCABT-PD107A-TGBT-EG44_01",
+    "categorie": "Local BT",
+    "zone": "Local BT"
+  },
+  {
+    "tag": "JF06-PE-107A-LOCABT-PD107A-TGBT-EG44_02",
+    "categorie": "Local BT",
+    "zone": "Local BT"
+  },
+  {
+    "tag": "JF06-PE-107A-LOCABT-PD107A-TGBT-EG44_03",
+    "categorie": "Local BT",
+    "zone": "Local BT"
+  },
+  {
+    "tag": "JF06-PE-107A-LOCABT-PD107A-TGBT-EG44_04",
+    "categorie": "Local BT",
+    "zone": "Local BT"
+  },
+  {
+    "tag": "JF06-PE-107A-LOCABT-PD107A-TGBT-EG44_05",
+    "categorie": "Local BT",
+    "zone": "Local BT"
+  },
+  {
+    "tag": "JF06-PE-107A-LOCABT-PD107A-TGBT-EG44_06",
+    "categorie": "Local BT",
+    "zone": "Local BT"
+  },
+  {
+    "tag": "JF06-PE-107A-LOCABT-PD107A-TGBT-EG44_07",
+    "categorie": "Local BT",
+    "zone": "Local BT"
+  },
+  {
+    "tag": "JF06-PE-107A-LOCABT-PD107A-TGBT-EG44_08",
+    "categorie": "Local BT",
+    "zone": "Local BT"
+  },
+  {
+    "tag": "JF06-PE-107A-LOCABT-PD107A-TGBT-EG44_09",
+    "categorie": "Local BT",
+    "zone": "Local BT"
+  },
+  {
+    "tag": "JF06-PE-107A-LOCABT-PD107A-TGBT-EG44_10",
+    "categorie": "Local BT",
+    "zone": "Local BT"
+  },
+  {
+    "tag": "JF06-PE-107A-LOCABT-PD107A-TGBT-EG44_11",
+    "categorie": "Local BT",
+    "zone": "Local BT"
+  },
+  {
+    "tag": "JF06-PE-107A-LOCAMT-PD107A",
+    "categorie": "Local MT",
+    "zone": "Local MT"
+  },
+  {
+    "tag": "JF06-PE-107A-LOCAMT-PD107A-TGMT-EM20_01",
+    "categorie": "Local MT",
+    "zone": "Local MT"
+  },
+  {
+    "tag": "JF06-PE-107A-LOCTRA-PD107A-TRAN-EC20_01",
+    "categorie": "Local Transfo",
+    "zone": "Local Transfo"
+  },
+  {
+    "tag": "JF06-PE-107A-LOCTRA-PD107A-TRAN-EC21_01",
+    "categorie": "Local Transfo",
+    "zone": "Local Transfo"
+  },
+  {
+    "tag": "JF06-PE-107A-LOCTRA-PD107A-TRAN-EC22_01",
+    "categorie": "Local Transfo",
+    "zone": "Local Transfo"
+  },
+  {
+    "tag": "JF06-PE-107A-LOCTRA-PD107A-TRAN-EC23_01",
+    "categorie": "Local Transfo",
+    "zone": "Local Transfo"
+  },
+  {
+    "tag": "JF06-PE-107A-LOCTRA-PD107A-TRAN-EC24_01",
+    "categorie": "Local Transfo",
+    "zone": "Local Transfo"
+  },
+  {
+    "tag": "JF06-PE-107A-LOCTRA-PD107A-TRAN-EC25_01",
+    "categorie": "Local Transfo",
+    "zone": "Local Transfo"
+  },
+  {
+    "tag": "JF06-PE-107A-LOCTRA-PD107A-TRAN-EC26_01",
+    "categorie": "Local Transfo",
+    "zone": "Local Transfo"
+  },
+  {
+    "tag": "JF06-PE-107A-PASREL-000SDC",
+    "categorie": "Passerelle",
+    "zone": "Passerelle"
+  },
+  {
+    "tag": "JF06-PE-107A-PASREL-AIRCLR",
+    "categorie": "Passerelle",
+    "zone": "Passerelle"
+  },
+  {
+    "tag": "JF06-PE-107A-PASREL-BATILI",
+    "categorie": "Passerelle",
+    "zone": "Passerelle"
+  },
+  {
+    "tag": "JF06-PE-107A-REACTI-000A01",
+    "categorie": "Réaction",
+    "zone": "Réaction"
+  },
+  {
+    "tag": "JF06-PE-107A-REACTI-000A01-GENT-R",
+    "categorie": "Réaction",
+    "zone": "Réaction"
+  },
+  {
+    "tag": "JF06-PE-107A-REACTI-000A01-GMOT-M",
+    "categorie": "Réaction",
+    "zone": "Réaction"
+  },
+  {
+    "tag": "JF06-PE-107A-REACTI-000M01",
+    "categorie": "Réaction",
+    "zone": "Réaction"
+  },
+  {
+    "tag": "JF06-PE-107A-REACTI-000M01-CSUR-LI201",
+    "categorie": "Réaction",
+    "zone": "Réaction"
+  },
+  {
+    "tag": "JF06-PE-107A-REACTI-000M01-IPRO-FV402",
+    "categorie": "Réaction",
+    "zone": "Réaction"
+  },
+  {
+    "tag": "JF06-PE-107A-REACTI-000M01-IPRO-FV423",
+    "categorie": "Réaction",
+    "zone": "Réaction"
+  },
+  {
+    "tag": "JF06-PE-107A-REACTI-000M01-IPRO-FV427",
+    "categorie": "Réaction",
+    "zone": "Réaction"
+  },
+  {
+    "tag": "JF06-PE-107A-REACTI-000P01",
+    "categorie": "Réaction",
+    "zone": "Réaction"
+  },
+  {
+    "tag": "JF06-PE-107A-REACTI-000P01-GMOT-M",
+    "categorie": "Réaction",
+    "zone": "Réaction"
+  },
+  {
+    "tag": "JF06-PE-107A-REACTI-00KP01",
+    "categorie": "Réaction",
+    "zone": "Réaction"
+  },
+  {
+    "tag": "JF06-PE-107A-REACTI-00KP01-GMOT-M",
+    "categorie": "Réaction",
+    "zone": "Réaction"
+  },
+  {
+    "tag": "JF06-PE-107A-REACTI-00W703",
+    "categorie": "Réaction",
+    "zone": "Réaction"
+  },
+  {
+    "tag": "JF06-PE-107A-REACTI-00W703-GMOT-M",
+    "categorie": "Réaction",
+    "zone": "Réaction"
+  },
+  {
+    "tag": "JF06-PE-107A-REACTI-00W704",
+    "categorie": "Réaction",
+    "zone": "Réaction"
+  },
+  {
+    "tag": "JF06-PE-107A-REACTI-00W704-GMOT-M",
+    "categorie": "Réaction",
+    "zone": "Réaction"
+  },
+  {
+    "tag": "JF06-PE-107A-RECYCL-000H16",
+    "categorie": "Recyclage",
+    "zone": "Recyclage"
+  },
+  {
+    "tag": "JF06-PE-107A-RECYCL-000H17",
+    "categorie": "Recyclage",
+    "zone": "Recyclage"
+  },
+  {
+    "tag": "JF06-PE-107A-RECYCL-000H18",
+    "categorie": "Recyclage",
+    "zone": "Recyclage"
+  },
+  {
+    "tag": "JF06-PE-107A-RECYCL-000H19",
+    "categorie": "Recyclage",
+    "zone": "Recyclage"
+  },
+  {
+    "tag": "JF06-PE-107A-RECYCL-000R19-GMOT-M",
+    "categorie": "Recyclage",
+    "zone": "Recyclage"
+  },
+  {
+    "tag": "JF06-PE-107A-RECYCL-000R20-GMOT-M",
+    "categorie": "Recyclage",
+    "zone": "Recyclage"
+  },
+  {
+    "tag": "JF06-PE-107A-RECYCL-000R21-GMOT-M",
+    "categorie": "Recyclage",
+    "zone": "Recyclage"
+  },
+  {
+    "tag": "JF06-PE-107A-RECYCL-000R23-GMOT-M",
+    "categorie": "Recyclage",
+    "zone": "Recyclage"
+  },
+  {
+    "tag": "JF06-PE-107A-RECYCL-000T01",
+    "categorie": "Recyclage",
+    "zone": "Recyclage"
+  },
+  {
+    "tag": "JF06-PE-107A-RECYCL-000T01-GETR-CHAINES",
+    "categorie": "Recyclage",
+    "zone": "Recyclage"
+  },
+  {
+    "tag": "JF06-PE-107A-RECYCL-000T01-GMOT-BC",
+    "categorie": "Recyclage",
+    "zone": "Recyclage"
+  },
+  {
+    "tag": "JF06-PE-107A-RECYCL-000T02",
+    "categorie": "Recyclage",
+    "zone": "Recyclage"
+  },
+  {
+    "tag": "JF06-PE-107A-RECYCL-000T02-GETR-BANDE",
+    "categorie": "Recyclage",
+    "zone": "Recyclage"
+  },
+  {
+    "tag": "JF06-PE-107A-RECYCL-000T02-GETR-ROULEAUX",
+    "categorie": "Recyclage",
+    "zone": "Recyclage"
+  },
+  {
+    "tag": "JF06-PE-107A-RECYCL-000T02-GETR-TAMB",
+    "categorie": "Recyclage",
+    "zone": "Recyclage"
+  },
+  {
+    "tag": "JF06-PE-107A-RECYCL-000T02-GMOT",
+    "categorie": "Recyclage",
+    "zone": "Recyclage"
+  },
+  {
+    "tag": "JF06-PE-107A-RECYCL-000T02-GMOT-M",
+    "categorie": "Recyclage",
+    "zone": "Recyclage"
+  },
+  {
+    "tag": "JF06-PE-107A-RECYCL-000T02-GMOT-UF",
+    "categorie": "Recyclage",
+    "zone": "Recyclage"
+  },
+  {
+    "tag": "JF06-PE-107A-RECYCL-000T08",
+    "categorie": "Recyclage",
+    "zone": "Recyclage"
+  },
+  {
+    "tag": "JF06-PE-107A-RECYCL-000T08-GMOT-M",
+    "categorie": "Recyclage",
+    "zone": "Recyclage"
+  },
+  {
+    "tag": "JF06-PE-107A-RECYCL-000T11",
+    "categorie": "Recyclage",
+    "zone": "Recyclage"
+  },
+  {
+    "tag": "JF06-PE-107A-RECYCL-000T11-GMOT-M",
+    "categorie": "Recyclage",
+    "zone": "Recyclage"
+  },
+  {
+    "tag": "JF06-PE-107A-RECYCL-000T13",
+    "categorie": "Recyclage",
+    "zone": "Recyclage"
+  },
+  {
+    "tag": "JF06-PE-107A-RECYCL-000T13-GMOT-M1",
+    "categorie": "Recyclage",
+    "zone": "Recyclage"
+  },
+  {
+    "tag": "JF06-PE-107A-RECYCL-000T13-GMOT-UF1",
+    "categorie": "Recyclage",
+    "zone": "Recyclage"
+  },
+  {
+    "tag": "JF06-PE-107A-RECYCL-000T13-TMOT-R",
+    "categorie": "Recyclage",
+    "zone": "Recyclage"
+  },
+  {
+    "tag": "JF06-PE-107A-RECYCL-00W701",
+    "categorie": "Recyclage",
+    "zone": "Recyclage"
+  },
+  {
+    "tag": "JF06-PE-107A-RECYCL-00W701-GMOT-M",
+    "categorie": "Recyclage",
+    "zone": "Recyclage"
+  },
+  {
+    "tag": "JF06-PE-107A-RECYCL-00W702",
+    "categorie": "Recyclage",
+    "zone": "Recyclage"
+  },
+  {
+    "tag": "JF06-PE-107A-RECYCL-00W702-GMOT-M",
+    "categorie": "Recyclage",
+    "zone": "Recyclage"
+  },
+  {
+    "tag": "JF06-PE-107A-REFROI-000E03-IPRO-PV036",
+    "categorie": "Refroidissement",
+    "zone": "Refroidissement"
+  },
+  {
+    "tag": "JF06-PE-107A-REFROI-000E04",
+    "categorie": "Refroidissement",
+    "zone": "Refroidissement"
+  },
+  {
+    "tag": "JF06-PE-107A-REFROI-000E04-CSUR-FI422",
+    "categorie": "Refroidissement",
+    "zone": "Refroidissement"
+  },
+  {
+    "tag": "JF06-PE-107A-REFROI-000E04-CSUR-LI209",
+    "categorie": "Refroidissement",
+    "zone": "Refroidissement"
+  },
+  {
+    "tag": "JF06-PE-107A-REFROI-000E04-CSUR-LSHH217A",
+    "categorie": "Refroidissement",
+    "zone": "Refroidissement"
+  },
+  {
+    "tag": "JF06-PE-107A-REFROI-000E04-CSUR-PAHH039A",
+    "categorie": "Refroidissement",
+    "zone": "Refroidissement"
+  },
+  {
+    "tag": "JF06-PE-107A-REFROI-000E04-CSUR-TI120",
+    "categorie": "Refroidissement",
+    "zone": "Refroidissement"
+  },
+  {
+    "tag": "JF06-PE-107A-REFROI-000E04-IPRO-HV598",
+    "categorie": "Refroidissement",
+    "zone": "Refroidissement"
+  },
+  {
+    "tag": "JF06-PE-107A-REFROI-000E04-SOUP-PSV034",
+    "categorie": "Refroidissement",
+    "zone": "Refroidissement"
+  },
+  {
+    "tag": "JF06-PE-107A-REFROI-000E04-SOUP-PSV035",
+    "categorie": "Refroidissement",
+    "zone": "Refroidissement"
+  },
+  {
+    "tag": "JF06-PE-107A-REFROI-000E04-SOUP-PSV037",
+    "categorie": "Refroidissement",
+    "zone": "Refroidissement"
+  },
+  {
+    "tag": "JF06-PE-107A-REFROI-000E04-SOUP-PSV038",
+    "categorie": "Refroidissement",
+    "zone": "Refroidissement"
+  },
+  {
+    "tag": "JF06-PE-107A-REFROI-000T05",
+    "categorie": "Refroidissement",
+    "zone": "Refroidissement"
+  },
+  {
+    "tag": "JF06-PE-107A-REFROI-000T05-GMOT-BC",
+    "categorie": "Refroidissement",
+    "zone": "Refroidissement"
+  },
+  {
+    "tag": "JF06-PE-107A-REFROI-000T12",
+    "categorie": "Refroidissement",
+    "zone": "Refroidissement"
+  },
+  {
+    "tag": "JF06-PE-107A-REFROI-000T12-GMOT-M",
+    "categorie": "Refroidissement",
+    "zone": "Refroidissement"
+  },
+  {
+    "tag": "JF06-PE-107A-RESEAU-INCEND-POMP",
+    "categorie": "Réseau",
+    "zone": "Réseau"
+  },
+  {
+    "tag": "JF06-PE-107A-RESEAU-INCEND-POMP-VANNES",
+    "categorie": "Réseau",
+    "zone": "Réseau"
+  },
+  {
+    "tag": "JF06-PE-107A-RIAF02",
+    "categorie": "Réacteur",
+    "zone": "Réacteur"
+  },
+  {
+    "tag": "JF06-PE-107A-RIAM03",
+    "categorie": "Réacteur",
+    "zone": "Réacteur"
+  },
+  {
+    "tag": "JF06-PE-107A-RIAS0X",
+    "categorie": "Réacteur",
+    "zone": "Réacteur"
+  },
+  {
+    "tag": "JF06-PE-107A-RIAT02",
+    "categorie": "Réacteur",
+    "zone": "Réacteur"
+  },
+  {
+    "tag": "JF06-PE-107A-RIAT04",
+    "categorie": "Réacteur",
+    "zone": "Réacteur"
+  },
+  {
+    "tag": "JF06-PE-107A-RIAT13",
+    "categorie": "Réacteur",
+    "zone": "Réacteur"
+  },
+  {
+    "tag": "JF06-PE-107A-SECHAG-000F01",
+    "categorie": "Séchage",
+    "zone": "Séchage"
+  },
+  {
+    "tag": "JF06-PE-107A-SECHAG-000F01-CSUR-TI103A",
+    "categorie": "Séchage",
+    "zone": "Séchage"
+  },
+  {
+    "tag": "JF06-PE-107A-SECHAG-000F01-STRU",
+    "categorie": "Séchage",
+    "zone": "Séchage"
+  },
+  {
+    "tag": "JF06-PE-107A-SECHAG-000F02",
+    "categorie": "Séchage",
+    "zone": "Séchage"
+  },
+  {
+    "tag": "JF06-PE-107A-SECHAG-000F02-GMOT-UF2",
+    "categorie": "Séchage",
+    "zone": "Séchage"
+  },
+  {
+    "tag": "JF06-PE-107A-SECHAG-000T03",
+    "categorie": "Séchage",
+    "zone": "Séchage"
+  },
+  {
+    "tag": "JF06-PE-107A-SECHAG-000T03-GMOT-M",
+    "categorie": "Séchage",
+    "zone": "Séchage"
+  },
+  {
+    "tag": "JF06-PE-107A-SECHAG-000T04",
+    "categorie": "Séchage",
+    "zone": "Séchage"
+  },
+  {
+    "tag": "JF06-PE-107A-SECHAG-000T04-GMOT-UF1",
+    "categorie": "Séchage",
+    "zone": "Séchage"
+  },
+  {
+    "tag": "JF06-PE-107A-STOKAG-000T07",
+    "categorie": "Stockage",
+    "zone": "Stockage"
+  },
+  {
+    "tag": "JF06-PE-107A-STOKAG-000T07-GETR-BANDE",
+    "categorie": "Stockage",
+    "zone": "Stockage"
+  },
+  {
+    "tag": "JF06-PE-107A-STOKAG-000T07-GMOT-M",
+    "categorie": "Stockage",
+    "zone": "Stockage"
+  },
+  {
+    "tag": "JF06-PE-107A-SYSDCS",
+    "categorie": "Système DCS",
+    "zone": "Système DCS"
+  },
+  {
+    "tag": "JF06-PE-107A-TREMIE-POTASS",
+    "categorie": "Trémie",
+    "zone": "Trémie"
+  },
+  {
+    "tag": "JF06-PE-107J-LOCAMT-PD107A-TGMT-107ABC01",
+    "categorie": "Local MT",
+    "zone": "Local MT"
+  },
+  {
+    "tag": "JF06-PE-U118-STOKAG-00T041",
+    "categorie": "Stockage",
+    "zone": "Stockage"
+  }
+]

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Suivi Équipements — MTTR / MTBF / Disponibilité</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <div class="eq-page">
+    <div class="sys-bar"><span class="dot"></span> 101 équipements suivis — PFA 107A</div>
+    <h1>Suivi Équipements</h1>
+    <p class="subtitle">MTTR / MTBF / Disponibilité, calculés à partir de vos relevés</p>
+    <p><a href="{{ url_for('index') }}">← Retour à l'accueil</a></p>
+
+    <div class="eq-panel">
+      <label for="selectEquipement">Choisir un équipement</label><br>
+      <select id="selectEquipement">
+        <option value="">-- Sélectionner --</option>
+        {% for eq in equipements %}
+          <option value="{{ eq.tag }}">{{ eq.tag }} — {{ eq.categorie }} ({{ eq.zone }})</option>
+        {% endfor %}
+      </select>
+
+      <label for="dateSaisie">Date de la saisie</label><br>
+      <input type="date" id="dateSaisie">
+
+      <h3>Saisie journalière (semaine)</h3>
+      <table id="tableauJours">
+        <thead>
+          <tr>
+            <th>Jour</th>
+            <th>Nombre de pannes</th>
+            <th>Heures d'arrêt</th>
+            <th>Cause de la panne</th>
+            <th>Commentaires</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+
+      <button id="btnCalculer">Calculer les KPIs</button>
+
+      <div class="resultats" id="resultats" style="display:none;">
+        <div class="kpi-box"><h2 id="valMTTR">-</h2><p>MTTR (h)</p></div>
+        <div class="kpi-box"><h2 id="valMTBF">-</h2><p>MTBF (h)</p></div>
+        <div class="kpi-box"><h2 id="valDispo">-</h2><p>Disponibilité (%)</p></div>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="eq-panel">
+      <h3 style="margin-top:0;">Ajouter un nouvel équipement</h3>
+      <div class="add-eq-row">
+        <input type="text" id="newTag" placeholder="Tag (ex: B05)">
+        <input type="text" id="newCategorie" placeholder="Catégorie (ex: Broyeurs)">
+        <select id="newZone">
+          <option value="">-- Choisir une zone --</option>
+          {% for zone in zones_disponibles %}
+            <option value="{{ zone }}">{{ zone }}</option>
+          {% endfor %}
+          <option value="__autre__">Autre (nouvelle zone)</option>
+        </select>
+        <input type="text" id="newZoneAutre" placeholder="Nouvelle zone" style="display:none;">
+        <button id="btnAjouterEquipement">Ajouter</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/equipements.js') }}"></script>
+</body>
+</html>

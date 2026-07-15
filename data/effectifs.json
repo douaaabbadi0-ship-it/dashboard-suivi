@@ -1,0 +1,26 @@
+{
+  "107A": {
+    "Mecanicien": 6,
+    "Chaudronnier": 2,
+    "Soudeur": 1,
+    "Electricien": 3,
+    "Instrumentiste": 2,
+    "Autre": 0
+  },
+  "107B": {
+    "Mecanicien": 0,
+    "Chaudronnier": 0,
+    "Soudeur": 0,
+    "Electricien": 0,
+    "Instrumentiste": 0,
+    "Autre": 0
+  },
+  "107C": {
+    "Mecanicien": 0,
+    "Chaudronnier": 0,
+    "Soudeur": 0,
+    "Electricien": 0,
+    "Instrumentiste": 0,
+    "Autre": 0
+  }
+}

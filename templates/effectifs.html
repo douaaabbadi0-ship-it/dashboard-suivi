@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Effectifs — JESA</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="eq-page">
+        <div class="sys-bar"><span class="dot"></span> Système en ligne — PFA 107A</div>
+        <h1>Gestion des Effectifs</h1>
+        <p class="subtitle">Effectif par corps de métier et par ligne, utilisé pour le calcul de l'Occupancy Rate</p>
+        <p><a href="{{ url_for('index') }}">← Retour à l'accueil</a></p>
+
+        <div class="eq-panel">
+            <label for="ligneSelect">Ligne de production</label><br>
+            <select id="ligneSelect">
+                {% for ligne in lignes %}
+                <option value="{{ ligne }}">{{ ligne }}</option>
+                {% endfor %}
+            </select>
+
+            <table class="kpi-table">
+                <thead>
+                    <tr>
+                        <th>Corps de métier</th>
+                        <th>Effectif</th>
+                    </tr>
+                </thead>
+                <tbody id="tableauEffectifsBody">
+                    {% for metier in metiers %}
+                    <tr>
+                        <td>{{ metier }}</td>
+                        <td><input type="number" min="0" class="effectif-input" data-metier="{{ metier }}" value="0"></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <button id="btnEnregistrer">Enregistrer les effectifs</button>
+            <div id="statusEffectifs" class="status"></div>
+        </div>
+    </div>
+
+    <script>
+        window.EFFECTIFS_INITIAL = {{ effectifs | tojson }};
+        window.METIERS = {{ metiers | tojson }};
+    </script>
+    <script src="{{ url_for('static', filename='js/effectifs.js') }}"></script>
+</body>
+</html>

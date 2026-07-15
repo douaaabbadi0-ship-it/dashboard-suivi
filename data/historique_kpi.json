@@ -1,0 +1,95 @@
+[
+  {
+    "tag": "P01",
+    "nb_pannes_total": 18,
+    "heures_arret_total": 43,
+    "mttr": 2.39,
+    "mtbf": 6.94,
+    "disponibilite": 74.4
+  },
+  {
+    "tag": "B02",
+    "nb_pannes_total": 3,
+    "heures_arret_total": 3.5,
+    "mttr": 1.17,
+    "mtbf": 54.83,
+    "disponibilite": 97.92
+  },
+  {
+    "tag": "B03",
+    "nb_pannes_total": 8,
+    "heures_arret_total": 6.5,
+    "mttr": 0.81,
+    "mtbf": 20.19,
+    "disponibilite": 96.13
+  },
+  {
+    "tag": "B03",
+    "nb_pannes_total": 8,
+    "heures_arret_total": 6.5,
+    "mttr": 0.81,
+    "mtbf": 20.19,
+    "disponibilite": 96.13
+  },
+  {
+    "tag": "C01",
+    "nb_pannes_total": 10,
+    "heures_arret_total": 7.0,
+    "mttr": 0.7,
+    "mtbf": 16.1,
+    "disponibilite": 95.83
+  },
+  {
+    "tag": "C01",
+    "nb_pannes_total": 10,
+    "heures_arret_total": 7.0,
+    "mttr": 0.7,
+    "mtbf": 16.1,
+    "disponibilite": 95.83
+  },
+  {
+    "tag": "T08",
+    "date": "2026-07-10",
+    "nb_pannes_total": 10,
+    "heures_arret_total": 18.0,
+    "mttr": 1.8,
+    "mtbf": 15.0,
+    "disponibilite": 89.29
+  },
+  {
+    "tag": "JF06-PE-107A-ASSAIN-000C02-GMOT-M",
+    "date": "2026-07-10",
+    "nb_pannes_total": 11,
+    "heures_arret_total": 2.5,
+    "mttr": 0.23,
+    "mtbf": 15.05,
+    "disponibilite": 98.51
+  },
+  {
+    "tag": "JF06-PE-107A-CLASSI-000C04-GMOT-M",
+    "date": "2026-07-10",
+    "nb_pannes_total": 1,
+    "heures_arret_total": 1.5,
+    "mttr": 1.5,
+    "mtbf": 166.5,
+    "disponibilite": 99.11
+  },
+  {
+    "tag": "JF06-PE-107A-ASSAIN-000C01-GMOT-M",
+    "date": "2026-07-09",
+    "nb_pannes_total": 10,
+    "heures_arret_total": 11.5,
+    "mttr": 1.15,
+    "mtbf": 15.65,
+    "disponibilite": 93.15
+  },
+  {
+    "tag": "JF06-PE-107A-ASSAIN-000C01",
+    "date": "2026-07-10",
+    "nb_pannes_total": 1,
+    "heures_arret_total": 1.5,
+    "mttr": 1.5,
+    "mtbf": 166.5,
+    "disponibilite": 99.11
+  }
+]
