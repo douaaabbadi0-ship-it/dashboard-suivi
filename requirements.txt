@@ -5,3 +5,4 @@ Werkzeug==3.0.3
 reportlab==4.2.2
 gunicorn==22.0.0
 supabase==2.9.1
+python-dotenv==1.2.2
