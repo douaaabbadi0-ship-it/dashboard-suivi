@@ -23,6 +23,88 @@ jours.forEach((jour, index) => {
   tbody.appendChild(tr);
 });
 
+let TOUS_LES_EQUIPEMENTS = [];
+
+const selectUnite = document.getElementById("selectUnite");
+const searchEquipement = document.getElementById("searchEquipement");
+const selectEquipement = document.getElementById("selectEquipement");
+const compteurEquipements = document.getElementById("compteurEquipements");
+
+function normaliser(texte) {
+  return (texte || "")
+    .toString()
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
+}
+
+function libelleOption(eq) {
+  const nom = eq.libelle || eq.categorie || "";
+  return `${eq.tag} — ${nom}`;
+}
+
+function remplirSelectUnites(equipements) {
+  const unites = [...new Set(equipements.map(eq => eq.unite).filter(Boolean))].sort();
+  unites.forEach(u => {
+    const opt = document.createElement("option");
+    opt.value = u;
+    opt.textContent = u;
+    selectUnite.appendChild(opt);
+  });
+}
+
+function filtrerEquipements() {
+  const unite = selectUnite.value;
+  const recherche = normaliser(searchEquipement.value);
+
+  let resultat = TOUS_LES_EQUIPEMENTS;
+
+  if (unite) {
+    resultat = resultat.filter(eq => eq.unite === unite);
+  }
+
+  if (recherche) {
+    resultat = resultat.filter(eq =>
+      normaliser(eq.tag).includes(recherche) ||
+      normaliser(eq.libelle).includes(recherche) ||
+      normaliser(eq.categorie).includes(recherche)
+    );
+  }
+
+  const valeurActuelle = selectEquipement.value;
+  selectEquipement.innerHTML = '<option value="">-- Sélectionner --</option>';
+
+  resultat.forEach(eq => {
+    const opt = document.createElement("option");
+    opt.value = eq.tag;
+    opt.textContent = libelleOption(eq);
+    selectEquipement.appendChild(opt);
+  });
+
+  if (resultat.some(eq => eq.tag === valeurActuelle)) {
+    selectEquipement.value = valeurActuelle;
+  }
+
+  compteurEquipements.textContent = `${resultat.length} / ${TOUS_LES_EQUIPEMENTS.length}`;
+}
+
+async function chargerEquipements() {
+  try {
+    const response = await fetch("/api/equipements");
+    TOUS_LES_EQUIPEMENTS = await response.json();
+  } catch (err) {
+    console.error("Erreur de chargement des équipements :", err);
+    TOUS_LES_EQUIPEMENTS = [];
+  }
+  remplirSelectUnites(TOUS_LES_EQUIPEMENTS);
+  filtrerEquipements();
+}
+
+selectUnite.addEventListener("change", filtrerEquipements);
+searchEquipement.addEventListener("input", filtrerEquipements);
+
+chargerEquipements();
+
 document.getElementById("btnCalculer").addEventListener("click", async () => {
   const tag = document.getElementById("selectEquipement").value;
   if (!tag) {

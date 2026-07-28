@@ -91,5 +91,181 @@
     "mttr": 1.5,
     "mtbf": 166.5,
     "disponibilite": 99.11
+  },
+  {
+    "tag": "JF06-PE-107A-ASSAIN-000C01",
+    "date": "2026-07-16",
+    "nb_pannes_total": 1,
+    "heures_arret_total": 2,
+    "mttr": 2.0,
+    "mtbf": 166.0,
+    "disponibilite": 98.81,
+    "detail_pannes": [
+      {
+        "jour": "Lundi",
+        "nb_pannes": 1,
+        "heures_arret": 2,
+        "cause": null,
+        "commentaire": null
+      }
+    ],
+    "pannes_par_cause": {}
+  },
+  {
+    "tag": "JF06-PE-107A-ASSAIN-000C01",
+    "date": "2026-07-16",
+    "nb_pannes_total": 1,
+    "heures_arret_total": 2,
+    "mttr": 2.0,
+    "mtbf": 166.0,
+    "disponibilite": 98.81,
+    "detail_pannes": [
+      {
+        "jour": "Lundi",
+        "nb_pannes": 1,
+        "heures_arret": 2,
+        "cause": null,
+        "commentaire": null
+      }
+    ],
+    "pannes_par_cause": {}
+  },
+  {
+    "tag": "JF06-PE-107A-ASSAIN-000C01",
+    "date": "2026-07-16",
+    "nb_pannes_total": 5,
+    "heures_arret_total": 8.0,
+    "mttr": 1.6,
+    "mtbf": 32.0,
+    "disponibilite": 95.24,
+    "detail_pannes": [
+      {
+        "jour": "Lundi",
+        "nb_pannes": 1,
+        "heures_arret": 2,
+        "cause": null,
+        "commentaire": null
+      },
+      {
+        "jour": "Mardi",
+        "nb_pannes": 2,
+        "heures_arret": 3.5,
+        "cause": null,
+        "commentaire": null
+      },
+      {
+        "jour": "Vendredi",
+        "nb_pannes": 2,
+        "heures_arret": 2.5,
+        "cause": null,
+        "commentaire": null
+      }
+    ],
+    "pannes_par_cause": {}
+  },
+  {
+    "tag": "JF06-PE-107A-ASSAIN-000C01",
+    "date": "2026-07-16",
+    "nb_pannes_total": 5,
+    "heures_arret_total": 8.0,
+    "mttr": 1.6,
+    "mtbf": 32.0,
+    "disponibilite": 95.24,
+    "detail_pannes": [
+      {
+        "jour": "Lundi",
+        "nb_pannes": 1,
+        "heures_arret": 2,
+        "cause": "Régulation",
+        "commentaire": null
+      },
+      {
+        "jour": "Mardi",
+        "nb_pannes": 2,
+        "heures_arret": 3.5,
+        "cause": null,
+        "commentaire": null
+      },
+      {
+        "jour": "Vendredi",
+        "nb_pannes": 2,
+        "heures_arret": 2.5,
+        "cause": null,
+        "commentaire": null
+      }
+    ],
+    "pannes_par_cause": {
+      "Régulation": 1
+    }
+  },
+  {
+    "tag": "JF06-PE-107A-ASSAIN-000C01",
+    "date": "2026-07-16",
+    "nb_pannes_total": 5,
+    "heures_arret_total": 8.0,
+    "mttr": 1.6,
+    "mtbf": 32.0,
+    "disponibilite": 95.24,
+    "detail_pannes": [
+      {
+        "jour": "Lundi",
+        "nb_pannes": 1,
+        "heures_arret": 2,
+        "cause": "Régulation",
+        "commentaire": null
+      },
+      {
+        "jour": "Mardi",
+        "nb_pannes": 2,
+        "heures_arret": 3.5,
+        "cause": null,
+        "commentaire": null
+      },
+      {
+        "jour": "Vendredi",
+        "nb_pannes": 2,
+        "heures_arret": 2.5,
+        "cause": null,
+        "commentaire": null
+      }
+    ],
+    "pannes_par_cause": {
+      "Régulation": 1
+    }
+  },
+  {
+    "tag": "JF06-PE-107A-ASSAIN-000C01",
+    "date": "2026-07-16",
+    "nb_pannes_total": 5,
+    "heures_arret_total": 8.0,
+    "mttr": 1.6,
+    "mtbf": 32.0,
+    "disponibilite": 95.24,
+    "detail_pannes": [
+      {
+        "jour": "Lundi",
+        "nb_pannes": 1,
+        "heures_arret": 2,
+        "cause": "Régulation",
+        "commentaire": null
+      },
+      {
+        "jour": "Mardi",
+        "nb_pannes": 2,
+        "heures_arret": 3.5,
+        "cause": null,
+        "commentaire": null
+      },
+      {
+        "jour": "Vendredi",
+        "nb_pannes": 2,
+        "heures_arret": 2.5,
+        "cause": null,
+        "commentaire": null
+      }
+    ],
+    "pannes_par_cause": {
+      "Régulation": 1
+    }
   }
 ]

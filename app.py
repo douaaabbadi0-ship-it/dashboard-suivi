@@ -3,12 +3,16 @@ import os
 import uuid
 from datetime import datetime
 
+from dotenv import load_dotenv
+load_dotenv()
+
 from flask import Flask, render_template, request, send_file, jsonify, session, url_for, redirect
 from equipment_kpi import charger_equipements, ajouter_equipement, calculer_kpi_equipement
 from effectifs_kpi import charger_effectifs, get_effectifs_ligne, mettre_a_jour_ligne, LIGNES, METIERS
 
 from parser import parse_daily_report, aggregate_week, compute_kpis_officiels
 from pdf_generator import generate_weekly_report
+from auth import enregistrer_identification, identification_required, logger_utilisation
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 UPLOAD_DIR = os.path.join(BASE_DIR, "uploads")
@@ -20,7 +24,7 @@ os.makedirs(GENERATED_DIR, exist_ok=True)
 ALLOWED_EXTENSIONS = {".xlsx", ".xlsm"}
 
 app = Flask(__name__)
-app.secret_key = "pfa-107a-jesa-2026"
+app.secret_key = os.environ.get("FLASK_SECRET_KEY")
 app.config["MAX_CONTENT_LENGTH"] = 25 * 1024 * 1024
 
 
@@ -29,7 +33,7 @@ def _allowed(filename):
 
 
 def _json_safe(obj):
-    """Convertit les dates en chaînes pour la sérialisation JSON."""
+    """Convertit les dates en chaines pour la serialisation JSON."""
     if isinstance(obj, dict):
         return {k: _json_safe(v) for k, v in obj.items()}
     if isinstance(obj, list):
@@ -39,16 +43,43 @@ def _json_safe(obj):
     return obj
 
 
+@app.route("/identification", methods=["GET", "POST"])
+def identification():
+    erreur = None
+    if request.method == "POST":
+        nom = request.form.get("nom", "").strip()
+        prenom = request.form.get("prenom", "").strip()
+        email = request.form.get("email", "").strip()
+        poste = request.form.get("poste", "").strip()
+
+        if not nom or not prenom or not email or not poste:
+            erreur = "Merci de remplir tous les champs."
+        else:
+            enregistrer_identification(nom, prenom, email, poste)
+            next_url = request.args.get("next") or url_for("index")
+            return redirect(next_url)
+
+    return render_template("identification.html", erreur=erreur)
+
+
+@app.route("/changer-utilisateur")
+def changer_utilisateur():
+    session.pop("utilisateur", None)
+    return redirect(url_for("identification"))
+
+
 @app.route("/")
+@identification_required
 def index():
     return render_template("index.html", lignes=LIGNES)
 
 
 @app.route("/api/generate", methods=["POST"])
+@identification_required
 def generate():
     files = request.files.getlist("daily_reports")
     if not files:
-        return jsonify({"error": "Aucun fichier reçu."}), 400
+        return jsonify({"error": "Aucun fichier recu."}), 400
 
     ligne = request.form.get("ligne") or None
     if ligne and ligne not in LIGNES:
@@ -78,7 +109,7 @@ def generate():
             errors.append(f"{os.path.basename(path)} : {exc}")
 
     if not daily_reports:
-        return jsonify({"error": "Aucun fichier n'a pu être analysé.", "details": errors}), 422
+        return jsonify({"error": "Aucun fichier n'a pu etre analyse.", "details": errors}), 422
 
     week_data = aggregate_week(daily_reports)
 
@@ -101,6 +132,8 @@ def generate():
 
     session["dernier_resultat"] = resultats
 
+    logger_utilisation(ligne=ligne, fichier_genere=output_name)
+
     return jsonify({
         "success": True,
         "redirect": url_for("page_dashboard")
@@ -108,6 +141,7 @@ def generate():
 
 
 @app.route("/download/<filename>")
+@identification_required
 def download(filename):
     path = os.path.join(GENERATED_DIR, filename)
     if not os.path.isfile(path):
@@ -116,6 +150,7 @@ def download(filename):
 
 
 @app.route("/dashboard")
+@identification_required
 def page_dashboard():
     resultats = session.get("dernier_resultat")
     if not resultats:
@@ -124,6 +159,7 @@ def page_dashboard():
 
 
 @app.route("/equipements")
+@identification_required
 def page_equipements():
     equipements = charger_equipements()
     zones_disponibles = sorted(set(eq["zone"] for eq in equipements))
@@ -131,11 +167,14 @@ def page_equipements():
 
 
 @app.route("/api/equipements", methods=["GET"])
+@identification_required
 def api_liste_equipements():
-    return jsonify(charger_equipements())
+    data = charger_equipements()
+    return jsonify(data)
 
 
 @app.route("/api/equipements", methods=["POST"])
+@identification_required
 def api_ajouter_equipement():
     data = request.get_json()
     tag = data.get("tag")
@@ -146,6 +185,7 @@ def api_ajouter_equipement():
 
 
 @app.route("/api/kpi-equipement", methods=["POST"])
+@identification_required
 def api_kpi_equipement():
     data = request.get_json()
     tag = data.get("tag")
@@ -156,17 +196,20 @@ def api_kpi_equipement():
 
 
 @app.route("/effectifs")
+@identification_required
 def page_effectifs():
     effectifs = charger_effectifs()
     return render_template("effectifs.html", effectifs=effectifs, lignes=LIGNES, metiers=METIERS)
 
 
 @app.route("/api/effectifs", methods=["GET"])
+@identification_required
 def api_liste_effectifs():
     return jsonify(charger_effectifs())
 
 
 @app.route("/api/effectifs", methods=["POST"])
+@identification_required
 def api_sauvegarder_effectifs():
     data = request.get_json() or {}
     ligne = data.get("ligne")

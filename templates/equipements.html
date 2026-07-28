@@ -4,23 +4,35 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Suivi Équipements — MTTR / MTBF / Disponibilité</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
   <div class="eq-page">
-    <div class="sys-bar"><span class="dot"></span> 101 équipements suivis — PFA 107A</div>
+    <div class="sys-bar"><span class="dot"></span> 1297 équipements suivis — JESA</div>
     <h1>Suivi Équipements</h1>
     <p class="subtitle">MTTR / MTBF / Disponibilité, calculés à partir de vos relevés</p>
-    <p><a href="{{ url_for('index') }}">← Retour à l'accueil</a></p>
+    <p><a href="/">← Retour à l'accueil</a></p>
 
     <div class="eq-panel">
-      <label for="selectEquipement">Choisir un équipement</label><br>
+      <label for="selectUnite">Unité / Ligne de production</label><br>
+      <select id="selectUnite">
+        <option value="">-- Choisir une unité --</option>
+      </select>
+
+      <br><br>
+
+      <label for="searchEquipement">Rechercher un équipement</label><br>
+      <input type="text" id="searchEquipement" placeholder="Tapez un tag, un nom ou une zone...">
+
+      <br><br>
+
+      <label for="selectEquipement">Équipement</label><br>
       <select id="selectEquipement">
         <option value="">-- Sélectionner --</option>
-        {% for eq in equipements %}
-          <option value="{{ eq.tag }}">{{ eq.tag }} — {{ eq.categorie }} ({{ eq.zone }})</option>
-        {% endfor %}
       </select>
+      <span id="compteurEquipements" style="margin-left:10px; opacity:0.7;"></span>
+
+      <br><br>
 
       <label for="dateSaisie">Date de la saisie</label><br>
       <input type="date" id="dateSaisie">
@@ -57,9 +69,6 @@
         <input type="text" id="newCategorie" placeholder="Catégorie (ex: Broyeurs)">
         <select id="newZone">
           <option value="">-- Choisir une zone --</option>
-          {% for zone in zones_disponibles %}
-            <option value="{{ zone }}">{{ zone }}</option>
-          {% endfor %}
           <option value="__autre__">Autre (nouvelle zone)</option>
         </select>
         <input type="text" id="newZoneAutre" placeholder="Nouvelle zone" style="display:none;">
@@ -68,6 +77,6 @@
     </div>
   </div>
 
-  <script src="{{ url_for('static', filename='js/equipements.js') }}"></script>
+  <script src="/static/js/equipements.js"></script>
 </body>
 </html>

@@ -17,8 +17,27 @@ supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
 
 
 def charger_equipements():
-    response = supabase.table("equipements").select("*").order("tag").execute()
-    return response.data or []
+    tous_les_equipements = []
+    debut = 0
+    taille_lot = 1000
+
+    while True:
+        response = (
+            supabase.table("equipements")
+            .select("*")
+            .order("tag")
+            .range(debut, debut + taille_lot - 1)
+            .execute()
+        )
+        lot = response.data or []
+        tous_les_equipements.extend(lot)
+
+        if len(lot) < taille_lot:
+            break
+
+        debut += taille_lot
+
+    return tous_les_equipements
 
 
 def ajouter_equipement(tag, categorie, zone):

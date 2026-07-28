@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Identification - Rapport Hebdo</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        /* Ajustements spécifiques à la page d'identification (centrage vertical) */
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .id-container {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 420px;
+            padding: 24px;
+        }
+
+        .id-container .sys-bar {
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        header.id-header {
+            text-align: center;
+            margin-bottom: 4px;
+        }
+
+        header.id-header h1 {
+            font-size: 24px;
+            margin-bottom: 4px;
+        }
+
+        .id-subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 13px;
+            margin: 0 0 24px;
+        }
+
+        .card label {
+            display: block;
+            margin: 18px 0 6px;
+        }
+
+        .card label:first-of-type {
+            margin-top: 0;
+        }
+
+        .card input[type="text"],
+        .card input[type="email"] {
+            width: 100%;
+        }
+
+        #autrePosteWrap {
+            display: none;
+        }
+
+        .erreur {
+            color: var(--red);
+            text-align: center;
+            font-size: 13.5px;
+            font-family: 'JetBrains Mono', monospace;
+            margin: 0 0 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="id-container">
+        <div class="sys-bar"><span class="dot"></span> Système en ligne — PFA 107A</div>
+
+        <header class="id-header">
+            <h1>Identification</h1>
+        </header>
+        <p class="id-subtitle">JESA — Service Exécution et Maintenance</p>
+
+        <div class="card">
+            {% if erreur %}<p class="erreur">{{ erreur }}</p>{% endif %}
+            <form method="POST" id="idForm">
+                <label for="nom">Nom</label>
+                <input type="text" id="nom" name="nom" required>
+
+                <label for="prenom">Prénom</label>
+                <input type="text" id="prenom" name="prenom" required>
+
+                <label for="email">Email professionnel</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="poste">Poste / Fonction</label>
+                <select id="poste" name="poste" required>
+                    <option value="" disabled selected>Sélectionner...</option>
+                    <optgroup label="Encadrement">
+                        <option value="Maintenance Execution Manager">Maintenance Execution Manager</option>
+                        <option value="Maintenance Manager">Maintenance Manager</option>
+                        <option value="Maintenance Engineer">Maintenance Engineer</option>
+                        <option value="Maintenance Supervisor">Maintenance Supervisor</option>
+                    </optgroup>
+                    <optgroup label="Méthodes / Planification">
+                        <option value="Scheduler">Scheduler</option>
+                        <option value="Planner">Planner</option>
+                        <option value="Kitting Planner">Kitting Planner</option>
+                        <option value="CMMS Engineer">CMMS Engineer</option>
+                        <option value="Reliability Engineer">Reliability Engineer</option>
+                    </optgroup>
+                    <optgroup label="Exécution">
+                        <option value="Operator">Operator (Production Team)</option>
+                        <option value="Foreman">Foreman (subcontractant)</option>
+                        <option value="Technician">Technician</option>
+                    </optgroup>
+                    <option value="Autre">Autre</option>
+                </select>
+
+                <div id="autrePosteWrap">
+                    <label for="autrePoste">Précisez votre poste</label>
+                    <input type="text" id="autrePoste" name="autrePoste" placeholder="Votre fonction exacte">
+                </div>
+
+                <button type="submit">Accéder à l'outil</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const posteSelect = document.getElementById('poste');
+        const autreWrap = document.getElementById('autrePoste').closest('#autrePosteWrap');
+        const autreInput = document.getElementById('autrePoste');
+
+        posteSelect.addEventListener('change', () => {
+            if (posteSelect.value === 'Autre') {
+                autreWrap.style.display = 'block';
+                autreInput.required = true;
+            } else {
+                autreWrap.style.display = 'none';
+                autreInput.required = false;
+                autreInput.value = '';
+            }
+        });
+    </script>
+</body>
+</html>

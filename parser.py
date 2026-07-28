@@ -80,17 +80,42 @@ def _extract_craft_hours(ws, row):
     return result
 
 
-def _parse_table_section(ws, start_marker_row, columns):
+def _parse_table_section(ws, start_marker_row, end_marker_row=None, max_row_limit=80):
+    """
+    Parse une section de tableau (PLANNED / NON PLANNED / NEXT DAY).
+
+    IMPORTANT (fix bug) : la lecture est desormais bornee explicitement par
+    `end_marker_row`, c'est-a-dire la ligne ou commence la section SUIVANTE
+    (quand elle est connue). Avant ce fix, la fonction se fiait uniquement a
+    la detection de 2 lignes vides consecutives pour savoir ou s'arreter.
+    Si l'espacement reel entre deux tableaux dans le fichier Excel ne
+    contenait pas exactement 2 lignes vides d'affilee (une seule ligne vide,
+    une ligne de sous-titre, etc.), le scan continuait au-dela de la fin
+    reelle du tableau et venait "avaler" la ligne d'en-tete de la section
+    suivante (ex: la ligne "NON PLANNED WORKS") comme si c'etait un OT
+    planifie valide, avec un statut vide. Consequence concrete observee :
+    nb_planifie gonfle artificiellement (ex: 141 au lieu de 130), ce qui fait
+    chuter le taux d'execution calcule (nb_executes / nb_planifie) alors que
+    la realite terrain est un taux de 100%.
+
+    On ne peut donc plus jamais depasser `end_marker_row - 1`, quel que soit
+    le nombre de lignes vides rencontrees.
+    """
     if start_marker_row is None:
         return []
 
     data_start = start_marker_row + 3
+
+    if end_marker_row is not None:
+        hard_limit = end_marker_row - 1
+    else:
+        hard_limit = start_marker_row + max_row_limit
+
     rows = []
     row = data_start
     empty_streak = 0
-    max_scan = 80
 
-    for _ in range(max_scan):
+    while row < hard_limit:
         num = _cell(ws, f"A{row}")
         type_ = _cell(ws, f"B{row}")
         tag = _cell(ws, f"C{row}")
@@ -144,9 +169,11 @@ def parse_daily_report(filepath):
     non_planned_row = _find_marker_row(ws, SECTION_MARKERS["non_planned"])
     next_day_row = _find_marker_row(ws, SECTION_MARKERS["next_day"])
 
-    planifie = _parse_table_section(ws, planned_row, None)
-    non_planifie = _parse_table_section(ws, non_planned_row, None)
-    prevu_lendemain = _parse_table_section(ws, next_day_row, None)
+    # Chaque section est desormais bornee par le debut de la section
+    # suivante (fix bug de debordement de scan, voir _parse_table_section).
+    planifie = _parse_table_section(ws, planned_row, end_marker_row=non_planned_row)
+    non_planifie = _parse_table_section(ws, non_planned_row, end_marker_row=next_day_row)
+    prevu_lendemain = _parse_table_section(ws, next_day_row, end_marker_row=None)
 
     totaux_heures = {}
     for section in (planifie, non_planifie):
@@ -231,12 +258,24 @@ def aggregate_week(daily_reports):
     efficacite_temps = round(100 * total_heures_reel / total_heures_estime, 1) if total_heures_estime else None
 
     dates = [r["meta"]["date"] for r in daily_reports if r["meta"]["date"]]
+    # nb_jours = nombre de JOURS CALENDAIRES UNIQUES, pas nombre de fichiers
+    # uploades. Avec un seul rapport par jour (cas mono-metier actuel), les
+    # deux coincident. Mais si un jour plusieurs superviseurs de metiers
+    # differents (elec + meca, etc.) uploadent chacun leur rapport pour les
+    # memes dates, len(daily_reports) doublerait/triplerait artificiellement
+    # nb_jours (ex: 10 fichiers pour 5 jours calendaires reels si 2 metiers
+    # sont fusionnes). Ce nb_jours gonfle est ensuite utilise pour calculer
+    # la capacite theorique dans _compute_occupancy_rate (effectif x 8.8h x
+    # nb_jours), ce qui sous-evaluerait artificiellement l'Occupancy Rate.
+    # On utilise donc le nombre de dates distinctes, robuste peu importe le
+    # nombre de fichiers/metiers fusionnes sur la meme periode.
+    nb_jours_uniques = len(set(dates)) if dates else 0
 
     return {
         "periode": {
             "debut": min(dates) if dates else None,
             "fin": max(dates) if dates else None,
-            "nb_jours": len(daily_reports),
+            "nb_jours": nb_jours_uniques,
         },
         "projet": daily_reports[0]["meta"] if daily_reports else {},
         "heures_semaine": heures_semaine,
