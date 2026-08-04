@@ -9,6 +9,7 @@ load_dotenv()
 from flask import Flask, render_template, request, send_file, jsonify, session, url_for, redirect
 from equipment_kpi import charger_equipements, ajouter_equipement, calculer_kpi_equipement
 from effectifs_kpi import charger_effectifs, get_effectifs_ligne, mettre_a_jour_ligne, LIGNES, METIERS
+from historique_rapports import sauvegarder_rapport_hebdo, charger_historique_rapports
 
 from parser import parse_daily_report, aggregate_week, compute_kpis_officiels
 from pdf_generator import generate_weekly_report
@@ -116,6 +117,14 @@ def generate():
     effectifs_metier = get_effectifs_ligne(ligne) if ligne else None
     kpis_officiels = compute_kpis_officiels(week_data, effectifs_metier=effectifs_metier)
 
+    # --- Persistance pour le suivi de tendance multi-semaines (page /tendances) ---
+    sauvegarder_rapport_hebdo(
+        ligne=ligne,
+        periode=week_data["periode"],
+        kpis=_json_safe(week_data["kpis"]),
+        kpis_officiels=_json_safe(kpis_officiels),
+    )
+
     output_name = f"rapport_hebdo_{datetime.now().strftime('%Y%m%d_%H%M')}.pdf"
     output_path = os.path.join(GENERATED_DIR, output_name)
     generate_weekly_report(week_data, kpis_officiels, output_path, ligne=ligne)
@@ -156,6 +165,22 @@ def page_dashboard():
     if not resultats:
         return redirect(url_for("index"))
     return render_template("dashboard.html", resultats=resultats)
+
+
+@app.route("/tendances")
+@identification_required
+def page_tendances():
+    return render_template("tendances.html", lignes=LIGNES)
+
+
+@app.route("/api/historique-kpi")
+@identification_required
+def api_historique_kpi():
+    ligne = request.args.get("ligne")
+    if not ligne or ligne not in LIGNES:
+        return jsonify({"error": "Ligne invalide ou manquante."}), 400
+    historique = charger_historique_rapports(ligne)
+    return jsonify(historique)
 
 
 @app.route("/equipements")

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tendances KPIs — PFA 107A</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.4/chart.umd.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="sys-bar"><span class="dot"></span> Suivi de tendance</div>
+    <p><a href="{{ url_for('index') }}">← Retour à l'accueil</a></p>
+
+    <h1>Évolution des KPIs dans le temps</h1>
+    <p>Comparez l'évolution des indicateurs semaine après semaine, par ligne de production.</p>
+
+    <div class="filters-row">
+      <label>Ligne de production
+        <select id="ligneSelect">
+          {% for l in lignes %}
+          <option value="{{ l }}">{{ l }}</option>
+          {% endfor %}
+        </select>
+      </label>
+
+      <label>Indicateur
+        <select id="kpiSelect">
+          <option value="taux_execution">Schedule Compliance (%)</option>
+          <option value="efficacite_temps">MH réalisé / planifié (%)</option>
+          <option value="mttr_approx_heures">MTTR approché (h)</option>
+          <option value="occupancy_rate_global">Occupancy Rate (%)</option>
+        </select>
+      </label>
+    </div>
+
+    <div id="chartStatus" class="status"></div>
+    <canvas id="tendanceChart" height="100"></canvas>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/tendances.js') }}"></script>
+</body>
+</html>
