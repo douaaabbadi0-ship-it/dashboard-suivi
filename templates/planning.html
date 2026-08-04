@@ -21,7 +21,13 @@
                 <option value="{{ ligne }}">{{ ligne }}</option>
                 {% endfor %}
             </select>
-            <ul id="planningList" class="planning-list"></ul>
+
+            <div class="calendar-legend">
+                <span><span class="legend-dot legend-ok"></span> Rapport généré</span>
+                <span><span class="legend-dot legend-manquant"></span> Rapport manquant</span>
+            </div>
+
+            <div id="calendarContainer"></div>
         </div>
     </div>
     <script src="{{ url_for('static', filename='js/planning.js') }}"></script>
