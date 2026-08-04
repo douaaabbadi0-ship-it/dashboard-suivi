@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Planning des rapports — JESA</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="sys-bar"><span class="dot"></span> Système en ligne — PFA 107A</div>
+        <header>
+            <h1>Planning des rapports hebdomadaires</h1>
+            <p class="subtitle">Suivi des semaines couvertes / manquantes</p>
+            <p><a href="{{ url_for('index') }}">← Retour à l'accueil</a></p>
+        </header>
+        <div class="card">
+            <label for="ligneSelectPlanning">Choisir la ligne</label>
+            <select id="ligneSelectPlanning">
+                {% for ligne in lignes %}
+                <option value="{{ ligne }}">{{ ligne }}</option>
+                {% endfor %}
+            </select>
+            <ul id="planningList" class="planning-list"></ul>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/planning.js') }}"></script>
+</body>
+</html>

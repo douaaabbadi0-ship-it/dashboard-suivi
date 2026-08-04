@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
 import uuid
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from dotenv import load_dotenv
 load_dotenv()
@@ -181,6 +181,42 @@ def api_historique_kpi():
         return jsonify({"error": "Ligne invalide ou manquante."}), 400
     historique = charger_historique_rapports(ligne)
     return jsonify(historique)
+
+
+@app.route("/planning")
+@identification_required
+def page_planning():
+    return render_template("planning.html", lignes=LIGNES)
+
+
+@app.route("/api/planning")
+@identification_required
+def api_planning():
+    ligne = request.args.get("ligne")
+    if not ligne or ligne not in LIGNES:
+        return jsonify({"error": "Ligne invalide ou manquante."}), 400
+
+    date_debut = datetime(2026, 6, 22)
+    date_aujourdhui = datetime.now()
+
+    historique = charger_historique_rapports(ligne)
+
+    semaines_generees = set()
+    for rapport in historique:
+        if rapport.get("periode_debut"):
+            semaines_generees.add(str(rapport["periode_debut"])[:10])
+
+    semaines = []
+    date_courante = date_debut
+    while date_courante <= date_aujourdhui:
+        semaine_str = date_courante.strftime("%Y-%m-%d")
+        semaines.append({
+            "periode_debut": semaine_str,
+            "generee": semaine_str in semaines_generees
+        })
+        date_courante += timedelta(weeks=1)
+
+    return jsonify(semaines)
 
 
 @app.route("/equipements")
