@@ -84,6 +84,7 @@ function renderChart(labels, valeurs, kpi) {
         },
         options: {
             responsive: true,
+            maintainAspectRatio: false,
             scales: { y: { beginAtZero: false } },
             plugins: { legend: { labels: { color: "#e5e7eb" } } },
         },
