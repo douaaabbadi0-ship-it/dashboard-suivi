@@ -77,6 +77,12 @@ kpi_card_label_style = ParagraphStyle(
 
 reco_style = ParagraphStyle("Reco", parent=styles["Normal"], fontSize=10, leading=15, leftIndent=8)
 
+# Style dédié à la colonne "Tag équipement" des tableaux d'interventions :
+# utilisé en Paragraph (et non en texte brut) pour permettre le retour à la
+# ligne automatique sur les tags longs (ex: JF06-PE-107A-RECYCL-000P04),
+# qui débordaient sinon sur la colonne "Description" voisine.
+tag_cell_style = ParagraphStyle("TagCell", parent=body_style, fontSize=8, leading=10)
+
 
 # ---------------------------------------------------------------------------
 # Fonctions utilitaires de seuils / couleurs
@@ -622,12 +628,12 @@ def _interventions_table(title, interventions, max_rows=10):
             d = item.get("date")
             data.append([
                 d.strftime("%d/%m/%Y") if d else "-",
-                item.get("tag_equipement") or "-",
+                Paragraph(item.get("tag_equipement") or "-", tag_cell_style),
                 (item.get("description") or "-")[:70],
                 item.get("statut") or "-",
             ])
 
-    table = Table(data, colWidths=[2.2 * cm, 3.5 * cm, 8.8 * cm, 2 * cm])
+    table = Table(data, colWidths=[2.2 * cm, 4.3 * cm, 8 * cm, 2 * cm])
     table.setStyle(TableStyle([
         ("BACKGROUND", (0, 0), (-1, 0), NAVY),
         ("TEXTCOLOR", (0, 0), (-1, 0), colors.white),
