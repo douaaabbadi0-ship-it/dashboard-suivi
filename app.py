@@ -114,7 +114,7 @@ def generate():
 
     week_data = aggregate_week(daily_reports)
 
-    effectifs_metier = get_effectifs_ligne(ligne) if ligne else None
+    effectifs_metier = get_effectifs_ligne(ligne, session["utilisateur"]["email"]) if ligne else None
     kpis_officiels = compute_kpis_officiels(week_data, effectifs_metier=effectifs_metier)
 
     # --- Persistance pour le suivi de tendance multi-semaines (page /tendances) ---
@@ -260,14 +260,14 @@ def api_kpi_equipement():
 @app.route("/effectifs")
 @identification_required
 def page_effectifs():
-    effectifs = charger_effectifs()
+    effectifs = charger_effectifs(session["utilisateur"]["email"])
     return render_template("effectifs.html", effectifs=effectifs, lignes=LIGNES, metiers=METIERS)
 
 
 @app.route("/api/effectifs", methods=["GET"])
 @identification_required
 def api_liste_effectifs():
-    return jsonify(charger_effectifs())
+    return jsonify(charger_effectifs(session["utilisateur"]["email"]))
 
 
 @app.route("/api/effectifs", methods=["POST"])
@@ -278,7 +278,7 @@ def api_sauvegarder_effectifs():
     effectifs_metier = data.get("effectifs", {})
 
     try:
-        result = mettre_a_jour_ligne(ligne, effectifs_metier)
+        result = mettre_a_jour_ligne(ligne, effectifs_metier, session["utilisateur"]["email"])
     except ValueError as exc:
         return jsonify({"error": str(exc)}), 400
 

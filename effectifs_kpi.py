@@ -4,10 +4,10 @@ effectifs_kpi.py
 Gestion des effectifs par corps de métier et par ligne de production
 (107A / 107B / 107C), utilisés pour le calcul de l'Occupancy Rate.
 
-Version Supabase : les données sont stockées dans la table `effectifs`
-(colonnes : ligne, metier, effectif) au lieu de data/effectifs.json.
-Les signatures de fonctions sont inchangées pour que app.py n'ait rien
-à modifier.
+Version Supabase avec cloisonnement par utilisateur : les données sont
+stockées dans la table `effectifs` (colonnes : ligne, metier, effectif,
+email), avec une contrainte d'unicité sur (ligne, metier, email).
+Toutes les fonctions prennent désormais un paramètre `email` obligatoire.
 """
 
 import os
@@ -29,13 +29,23 @@ def _defaut():
     return {ligne: {metier: 0 for metier in METIERS} for ligne in LIGNES}
 
 
-def charger_effectifs():
+def charger_effectifs(email):
     """
-    Charge tous les effectifs depuis Supabase, sous la même forme qu'avant :
+    Charge tous les effectifs de l'utilisateur `email` depuis Supabase,
+    sous la même forme qu'avant :
     { "107A": {"Mecanicien": 6, ...}, "107B": {...}, "107C": {...} }
-    Crée les lignes manquantes à 0 si la table est vide ou incomplète.
+    Crée les lignes manquantes à 0 si aucune donnée n'existe pour cet
+    utilisateur (premier lancement pour lui).
     """
-    response = supabase.table("effectifs").select("*").execute()
+    if not email:
+        raise ValueError("email est requis pour charger les effectifs.")
+
+    response = (
+        supabase.table("effectifs")
+        .select("*")
+        .eq("email", email)
+        .execute()
+    )
     rows = response.data or []
 
     data = _defaut()
@@ -45,18 +55,22 @@ def charger_effectifs():
         if ligne in data and metier in data[ligne]:
             data[ligne][metier] = row["effectif"]
 
-    # Si la table Supabase est vide (premier lancement), on la seed depuis les valeurs par défaut
+    # Si aucune ligne n'existe encore pour cet utilisateur, on seed à 0
     if not rows:
-        sauvegarder_effectifs(data)
+        sauvegarder_effectifs(data, email)
 
     return data
 
 
-def sauvegarder_effectifs(data):
+def sauvegarder_effectifs(data, email):
     """
     data : { "107A": {"Mecanicien": 6, ...}, ... }
-    Upsert ligne par ligne / métier par métier dans Supabase.
+    Upsert ligne par ligne / métier par métier dans Supabase, pour
+    l'utilisateur `email`.
     """
+    if not email:
+        raise ValueError("email est requis pour sauvegarder les effectifs.")
+
     rows = []
     for ligne in LIGNES:
         ligne_data = data.get(ligne, {metier: 0 for metier in METIERS})
@@ -65,27 +79,30 @@ def sauvegarder_effectifs(data):
                 "ligne": ligne,
                 "metier": metier,
                 "effectif": int(ligne_data.get(metier, 0) or 0),
+                "email": email,
             })
 
-    supabase.table("effectifs").upsert(rows, on_conflict="ligne,metier").execute()
+    supabase.table("effectifs").upsert(rows, on_conflict="ligne,metier,email").execute()
     return data
 
 
-def get_effectifs_ligne(ligne):
-    """Retourne le dict {metier: effectif} pour une ligne donnée."""
-    data = charger_effectifs()
+def get_effectifs_ligne(ligne, email):
+    """Retourne le dict {metier: effectif} pour une ligne donnée et un utilisateur donné."""
+    data = charger_effectifs(email)
     return data.get(ligne, {metier: 0 for metier in METIERS})
 
 
-def mettre_a_jour_ligne(ligne, effectifs_metier):
+def mettre_a_jour_ligne(ligne, effectifs_metier, email):
     """
-    Met à jour les effectifs d'une ligne donnée.
+    Met à jour les effectifs d'une ligne donnée, pour l'utilisateur `email`.
     effectifs_metier : dict {metier: int}
     """
     if ligne not in LIGNES:
         raise ValueError(f"Ligne inconnue : {ligne}")
+    if not email:
+        raise ValueError("email est requis pour mettre à jour les effectifs.")
 
-    data = charger_effectifs()
+    data = charger_effectifs(email)
     ligne_data = data.get(ligne, {metier: 0 for metier in METIERS})
 
     for metier in METIERS:
@@ -97,4 +114,4 @@ def mettre_a_jour_ligne(ligne, effectifs_metier):
             ligne_data[metier] = max(0, val)
 
     data[ligne] = ligne_data
-    return sauvegarder_effectifs(data)
+    return sauvegarder_effectifs(data, email)
