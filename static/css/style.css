@@ -676,6 +676,8 @@ hr {
 }
 
 .file-name {
+    flex: 1;
+    min-width: 0;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -683,17 +685,28 @@ hr {
 }
 
 .file-remove {
+    flex-shrink: 0;
+    width: 22px;
+    height: 22px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background: transparent;
     border: none;
-    color: #8899a6;
-    cursor: pointer;
-    font-size: 14px;
-    padding: 2px 6px;
+    box-shadow: none;
     border-radius: 4px;
+    color: #8899a6;
+    font-size: 13px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    cursor: pointer;
     transition: color 0.15s, background 0.15s;
 }
 
 .file-remove:hover {
     color: #ff5c5c;
     background: rgba(255, 92, 92, 0.1);
+    transform: none;
+    box-shadow: none;
 }
