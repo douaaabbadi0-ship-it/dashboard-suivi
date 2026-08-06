@@ -8,13 +8,49 @@ const ligneSelect = document.getElementById("ligneSelect");
 
 let selectedFiles = [];
 
+// Ajoute des fichiers à la liste existante, en évitant les doublons (même nom + même taille)
+function addFiles(newFiles) {
+    newFiles.forEach(f => {
+        const alreadyExists = selectedFiles.some(
+            existing => existing.name === f.name && existing.size === f.size
+        );
+        if (!alreadyExists) {
+            selectedFiles.push(f);
+        }
+    });
+    renderFileList();
+}
+
+function removeFile(index) {
+    selectedFiles.splice(index, 1);
+    renderFileList();
+}
+
 function renderFileList() {
     fileListEl.innerHTML = "";
-    selectedFiles.forEach(f => {
+    selectedFiles.forEach((f, index) => {
         const li = document.createElement("li");
-        li.textContent = f.name;
+        li.className = "file-item";
+
+        const nameSpan = document.createElement("span");
+        nameSpan.className = "file-name";
+        nameSpan.textContent = f.name;
+
+        const removeBtn = document.createElement("button");
+        removeBtn.type = "button";
+        removeBtn.className = "file-remove";
+        removeBtn.textContent = "✕";
+        removeBtn.setAttribute("aria-label", `Supprimer ${f.name}`);
+        removeBtn.addEventListener("click", (e) => {
+            e.stopPropagation(); // évite de rouvrir le sélecteur de fichiers (dropzone)
+            removeFile(index);
+        });
+
+        li.appendChild(nameSpan);
+        li.appendChild(removeBtn);
         fileListEl.appendChild(li);
     });
+
     generateBtn.disabled = selectedFiles.length === 0;
     dropzoneText.textContent = selectedFiles.length
         ? `${selectedFiles.length} fichier(s) sélectionné(s)`
@@ -24,8 +60,9 @@ function renderFileList() {
 dropzone.addEventListener("click", () => fileInput.click());
 
 fileInput.addEventListener("change", (e) => {
-    selectedFiles = Array.from(e.target.files);
-    renderFileList();
+    addFiles(Array.from(e.target.files));
+    // Réinitialise l'input pour permettre de re-sélectionner le même fichier plus tard si besoin
+    fileInput.value = "";
 });
 
 ["dragenter", "dragover"].forEach(evt =>
@@ -43,10 +80,10 @@ fileInput.addEventListener("change", (e) => {
 );
 
 dropzone.addEventListener("drop", (e) => {
-    selectedFiles = Array.from(e.dataTransfer.files).filter(f =>
+    const dropped = Array.from(e.dataTransfer.files).filter(f =>
         f.name.endsWith(".xlsx") || f.name.endsWith(".xlsm")
     );
-    renderFileList();
+    addFiles(dropped);
 });
 
 generateBtn.addEventListener("click", async () => {
