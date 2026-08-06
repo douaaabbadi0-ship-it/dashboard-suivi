@@ -21,7 +21,7 @@ def _vers_iso(valeur):
     return valeur
 
 
-def sauvegarder_rapport_hebdo(ligne, periode, kpis, kpis_officiels):
+def sauvegarder_rapport_hebdo(ligne, periode, kpis, kpis_officiels, email):
     """
     Enregistre le résultat d'une analyse hebdomadaire pour permettre
     le suivi de tendance multi-semaines (page /tendances).
@@ -29,6 +29,8 @@ def sauvegarder_rapport_hebdo(ligne, periode, kpis, kpis_officiels):
     ligne : "107A" / "107B" / "107C" (ou None)
     periode : dict avec "debut" et "fin"
     kpis / kpis_officiels : dicts JSON-sérialisables (déjà passés par _json_safe dans app.py)
+    email : email de l'utilisateur courant (session["utilisateur"]["email"]),
+            utilisé pour cloisonner les rapports par personne.
     """
     supabase.table("historique_rapports").insert({
         "ligne": ligne,
@@ -36,19 +38,22 @@ def sauvegarder_rapport_hebdo(ligne, periode, kpis, kpis_officiels):
         "periode_fin": _vers_iso(periode.get("fin")),
         "kpis": kpis,
         "kpis_officiels": kpis_officiels,
+        "email": email,
     }).execute()
 
 
-def charger_historique_rapports(ligne, limite=26):
+def charger_historique_rapports(ligne, email, limite=26):
     """
-    Retourne la liste des rapports hebdomadaires passés pour une ligne,
-    triés du plus ancien au plus récent (pratique pour tracer une courbe),
+    Retourne la liste des rapports hebdomadaires passés pour une ligne
+    ET pour l'utilisateur courant (cloisonnement par email), triés du
+    plus ancien au plus récent (pratique pour tracer une courbe),
     limités aux `limite` dernières semaines.
     """
     response = (
         supabase.table("historique_rapports")
         .select("*")
         .eq("ligne", ligne)
+        .eq("email", email)
         .order("periode_fin", desc=True)
         .limit(limite)
         .execute()

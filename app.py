@@ -123,6 +123,7 @@ def generate():
         periode=week_data["periode"],
         kpis=_json_safe(week_data["kpis"]),
         kpis_officiels=_json_safe(kpis_officiels),
+        email=session["utilisateur"]["email"],
     )
 
     output_name = f"rapport_hebdo_{datetime.now().strftime('%Y%m%d_%H%M')}.pdf"
@@ -179,7 +180,7 @@ def api_historique_kpi():
     ligne = request.args.get("ligne")
     if not ligne or ligne not in LIGNES:
         return jsonify({"error": "Ligne invalide ou manquante."}), 400
-    historique = charger_historique_rapports(ligne)
+    historique = charger_historique_rapports(ligne, session["utilisateur"]["email"])
     return jsonify(historique)
 
 
@@ -199,7 +200,7 @@ def api_planning():
     date_debut = datetime(2026, 6, 22)
     date_aujourdhui = datetime.now()
 
-    historique = charger_historique_rapports(ligne)
+    historique = charger_historique_rapports(ligne, session["utilisateur"]["email"])
 
     semaines_generees = set()
     for rapport in historique:
