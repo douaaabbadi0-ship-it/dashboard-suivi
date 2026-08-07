@@ -12,6 +12,8 @@ from effectifs_kpi import charger_effectifs, get_effectifs_ligne, mettre_a_jour_
 from historique_rapports import sauvegarder_rapport_hebdo, charger_historique_rapports
 
 from parser import parse_daily_report, aggregate_week, compute_kpis_officiels
+from pdc_parser import parse_pdc
+from reconciliation import reconcilier_semaine
 from pdf_generator import generate_weekly_report
 from auth import enregistrer_identification, identification_required, logger_utilisation
 
@@ -117,6 +119,22 @@ def generate():
     effectifs_metier = get_effectifs_ligne(ligne, session["utilisateur"]["email"]) if ligne else None
     kpis_officiels = compute_kpis_officiels(week_data, effectifs_metier=effectifs_metier)
 
+    # --- PDC SAP (optionnel) : upload + rapprochement planifie / realise ---
+    # Champ de formulaire attendu cote frontend : "pdc_sap" (un seul fichier,
+    # contrairement a "daily_reports" qui en accepte plusieurs). Tant que le
+    # champ n'existe pas encore dans index.html, request.files.get() renvoie
+    # simplement None et cette section est ignoree sans erreur.
+    reconciliation_result = None
+    pdc_file = request.files.get("pdc_sap")
+    if pdc_file and pdc_file.filename and _allowed(pdc_file.filename):
+        pdc_path = os.path.join(session_dir, pdc_file.filename)
+        pdc_file.save(pdc_path)
+        try:
+            pdc_rows = parse_pdc(pdc_path)
+            reconciliation_result = reconcilier_semaine(week_data, pdc_rows, effectifs_metier)
+        except Exception as exc:
+            errors.append(f"PDC SAP ({os.path.basename(pdc_path)}) : {exc}")
+
     # --- Persistance pour le suivi de tendance multi-semaines (page /tendances) ---
     sauvegarder_rapport_hebdo(
         ligne=ligne,
@@ -128,7 +146,19 @@ def generate():
 
     output_name = f"rapport_hebdo_{datetime.now().strftime('%Y%m%d_%H%M')}.pdf"
     output_path = os.path.join(GENERATED_DIR, output_name)
-    generate_weekly_report(week_data, kpis_officiels, output_path, ligne=ligne)
+
+    # TODO : generate_weekly_report doit etre mis a jour (pdf_generator.py)
+    # pour accepter reconciliation=... et dessiner le camembert + le graphe
+    # en batons + la courbe man_hours a partir de reconciliation_result.
+    # En attendant cette mise a jour, on retombe sur l'appel actuel sans
+    # casser la generation du PDF si le parametre n'existe pas encore.
+    try:
+        generate_weekly_report(
+            week_data, kpis_officiels, output_path,
+            ligne=ligne, reconciliation=reconciliation_result,
+        )
+    except TypeError:
+        generate_weekly_report(week_data, kpis_officiels, output_path, ligne=ligne)
 
     resultats = {
         "download_url": f"/download/{output_name}",
@@ -138,6 +168,7 @@ def generate():
         "kpis_officiels": _json_safe(kpis_officiels),
         "periode": _json_safe(week_data["periode"]),
         "ligne": ligne,
+        "reconciliation": _json_safe(reconciliation_result) if reconciliation_result else None,
     }
 
     session["dernier_resultat"] = resultats

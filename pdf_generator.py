@@ -12,6 +12,7 @@ Version enrichie :
 - Graphique d'évolution quotidienne (heures réelles vs estimées par jour)
 - Tableau des indicateurs avec couleur conditionnelle sur les valeurs
 - Diagrammes de Pareto (équipement / cause de panne)
+- Rapprochement PDC SAP / réalisé : camembert, graphe en bâtons, courbe man-hours
 """
 
 import os
@@ -369,6 +370,196 @@ def _equipements_critiques_80pct(resultats):
         if running / total >= 0.8:
             break
     return critiques
+
+
+# ---------------------------------------------------------------------------
+# NOUVEAU : Graphiques de rapprochement PDC SAP / réalisé
+# ---------------------------------------------------------------------------
+def _chart_reconciliation_camembert(camembert, tmpdir):
+    """
+    Camembert : OT planifiés (SAP) réalisés vs non réalisés.
+    `camembert` = reconciliation_result["camembert"], format :
+    {"labels": [...], "valeurs": [...]}
+    Retourne None si aucune donnée exploitable.
+    """
+    if not camembert:
+        return None
+
+    labels = camembert.get("labels", [])
+    values = camembert.get("valeurs", [])
+    if not values or sum(values) == 0:
+        return None
+
+    # Vert pour "réalisé", rouge pour "non réalisé" (ordre attendu du camembert
+    # produit par reconciliation.reconcilier_semaine : [realise, non_realise]).
+    palette = ["#2E7D32", "#B3261E"] if len(values) == 2 else CHART_PALETTE[:len(values)]
+
+    fig, ax = plt.subplots(figsize=(5, 4), dpi=150)
+    wedges, texts, autotexts = ax.pie(
+        values, labels=labels, colors=palette, autopct="%1.0f%%",
+        startangle=90, textprops={"fontsize": 9}
+    )
+    for at in autotexts:
+        at.set_color("white")
+        at.set_fontsize(9)
+    ax.axis("equal")
+    fig.tight_layout()
+
+    path = os.path.join(tmpdir, "chart_pdc_camembert.png")
+    fig.savefig(path, dpi=150)
+    plt.close(fig)
+    return path
+
+
+def _chart_reconciliation_barres(barres, tmpdir):
+    """
+    Graphe en bâtons : nombre d'OT par catégorie (planifié réalisé /
+    planifié non réalisé / non planifié réalisé).
+    `barres` = reconciliation_result["barres"], format :
+    {"labels": [...], "valeurs": [...]}
+    Retourne None si aucune donnée exploitable.
+    """
+    if not barres:
+        return None
+
+    labels = barres.get("labels", [])
+    values = barres.get("valeurs", [])
+    if not values or sum(values) == 0:
+        return None
+
+    bar_colors = CHART_PALETTE[:len(labels)]
+
+    fig, ax = plt.subplots(figsize=(6.5, 3.4), dpi=150)
+    x = range(len(labels))
+    bars = ax.bar(x, values, color=bar_colors)
+    ax.set_xticks(list(x))
+    ax.set_xticklabels(labels, fontsize=8.5)
+    ax.set_ylabel("Nombre d'OT", fontsize=9)
+    ax.spines["top"].set_visible(False)
+    ax.spines["right"].set_visible(False)
+
+    for rect, v in zip(bars, values):
+        ax.text(rect.get_x() + rect.get_width() / 2, v, str(v), ha="center", va="bottom", fontsize=8.5)
+
+    fig.tight_layout()
+    path = os.path.join(tmpdir, "chart_pdc_barres.png")
+    fig.savefig(path, dpi=150)
+    plt.close(fig)
+    return path
+
+
+def _chart_man_hours(man_hours, tmpdir):
+    """
+    Courbe/barres journalières : heures réelles vs heures dues sur la
+    semaine, avec le taux d'efficacité en courbe (axe secondaire) quand
+    les heures dues sont disponibles (effectifs configurés).
+    `man_hours` = reconciliation_result["man_hours"], liste de dicts
+    {"date": date, "heures_reel": float, "heures_dues": float|None,
+     "efficacite_pct": float|None, ...}
+    Retourne None si aucune donnée exploitable.
+    """
+    if not man_hours:
+        return None
+
+    rows = [r for r in man_hours if r.get("date")]
+    if not rows:
+        return None
+
+    rows = sorted(rows, key=lambda r: r["date"])
+    jours = [r["date"].strftime("%d/%m") if hasattr(r["date"], "strftime") else str(r["date"]) for r in rows]
+    reels = [r.get("heures_reel") or 0 for r in rows]
+    dues = [r.get("heures_dues") for r in rows]
+    has_dues = any(d is not None for d in dues)
+
+    fig, ax1 = plt.subplots(figsize=(6.5, 3.4), dpi=150)
+    x = range(len(jours))
+
+    if has_dues:
+        dues_plot = [d if d is not None else 0 for d in dues]
+        w = 0.35
+        ax1.bar([i - w / 2 for i in x], dues_plot, width=w, label="Heures dues", color="#CADCFC")
+        ax1.bar([i + w / 2 for i in x], reels, width=w, label="Heures réelles", color="#1E2761")
+    else:
+        ax1.bar(x, reels, width=0.5, label="Heures réelles", color="#1E2761")
+
+    ax1.set_xticks(list(x))
+    ax1.set_xticklabels(jours, fontsize=8)
+    ax1.set_ylabel("Heures", fontsize=9)
+    ax1.legend(frameon=False, fontsize=8, loc="upper left")
+    ax1.spines["top"].set_visible(False)
+
+    if has_dues:
+        effs = [r.get("efficacite_pct") for r in rows]
+        xs_valid = [i for i, e in enumerate(effs) if e is not None]
+        ys_valid = [e for e in effs if e is not None]
+        if ys_valid:
+            ax2 = ax1.twinx()
+            ax2.plot(xs_valid, ys_valid, color="#B26A00", marker="o", markersize=4, linewidth=1.5)
+            ax2.set_ylabel("Efficacité (%)", fontsize=9)
+            ax2.axhline(100, color="#6B6B6B", linestyle="--", linewidth=0.8)
+
+    fig.tight_layout()
+    path = os.path.join(tmpdir, "chart_man_hours.png")
+    fig.savefig(path, dpi=150)
+    plt.close(fig)
+    return path
+
+
+def _reconciliation_section(reconciliation, tmpdir, ligne):
+    """
+    Section "Rapprochement Plan de Charge SAP / Réalisé" : camembert
+    planifié réalisé/non réalisé, graphe en bâtons des 3 catégories d'OT,
+    et courbe man-hours (heures réelles vs heures dues).
+
+    Si `reconciliation` est None (aucun PDC SAP fourni lors de la
+    génération du rapport), affiche un message explicatif au lieu de la
+    section, plutôt que de la faire disparaître silencieusement.
+    """
+    elements = [Paragraph("Rapprochement Plan de Charge SAP / Réalisé", h2_style)]
+
+    if not reconciliation:
+        elements.append(Paragraph(
+            "Aucun Plan de Charge SAP n'a été fourni pour cette période. Cette section "
+            "nécessite l'upload du fichier PDC SAP en plus des rapports journaliers "
+            "pour comparer les OT planifiés aux OT réellement exécutés.",
+            body_style
+        ))
+        return elements
+
+    nb_pdc = reconciliation.get("nb_ot_pdc_semaine")
+    elements.append(Paragraph(
+        f"{nb_pdc} OT planifiés dans le PDC SAP sur la période"
+        + (f" — Ligne {ligne}" if ligne else "") + ".",
+        muted_style
+    ))
+    elements.append(Spacer(1, 10))
+
+    camembert_path = _chart_reconciliation_camembert(reconciliation.get("camembert"), tmpdir)
+    if camembert_path:
+        elements.append(Image(camembert_path, width=10 * cm, height=8 * cm))
+        elements.append(Spacer(1, 14))
+
+    barres_path = _chart_reconciliation_barres(reconciliation.get("barres"), tmpdir)
+    if barres_path:
+        elements.append(Paragraph("OT planifiés vs réalisés (détail)", h2_no_toc_style))
+        elements.append(Image(barres_path, width=15 * cm, height=7.9 * cm))
+        elements.append(Spacer(1, 16))
+
+    man_hours_data = reconciliation.get("man_hours")
+    man_hours_path = _chart_man_hours(man_hours_data, tmpdir)
+    if man_hours_path:
+        elements.append(Paragraph("Man-hours : heures travaillées vs heures dues", h2_no_toc_style))
+        has_dues = any(r.get("heures_dues") is not None for r in (man_hours_data or []))
+        if not has_dues:
+            elements.append(Paragraph(
+                "Effectifs non configurés pour cette ligne (page /effectifs) : seules les heures "
+                "réelles sont affichées, sans comparaison aux heures dues.",
+                muted_style
+            ))
+            elements.append(Spacer(1, 4))
+        elements.append(Image(man_hours_path, width=15 * cm, height=7.9 * cm))
+
+    return elements
 
 
 # ---------------------------------------------------------------------------
@@ -765,8 +956,15 @@ def _page_de_garde(periode_str, ligne):
 # ---------------------------------------------------------------------------
 # Génération du rapport
 # ---------------------------------------------------------------------------
-def generate_weekly_report(week_data, kpis_officiels, output_path, ligne=None):
-    """Construit le rapport PDF hebdomadaire et l'enregistre à output_path."""
+def generate_weekly_report(week_data, kpis_officiels, output_path, ligne=None, reconciliation=None):
+    """
+    Construit le rapport PDF hebdomadaire et l'enregistre à output_path.
+
+    reconciliation : sortie optionnelle de reconciliation.reconcilier_semaine()
+    (None si aucun PDC SAP n'a été fourni). Ajoute la section "Rapprochement
+    Plan de Charge SAP / Réalisé" avec camembert, graphe en bâtons et courbe
+    man-hours.
+    """
     doc = ReportDocTemplate(
         output_path, pagesize=A4,
         leftMargin=1.8 * cm, rightMargin=1.8 * cm, topMargin=1.8 * cm, bottomMargin=1.8 * cm
@@ -820,6 +1018,10 @@ def generate_weekly_report(week_data, kpis_officiels, output_path, ligne=None):
         if repart_path:
             story.append(Paragraph("Répartition des interventions par type", h2_style))
             story.append(Image(repart_path, width=10 * cm, height=8 * cm))
+
+        # ---- NOUVEAU : Rapprochement PDC SAP / réalisé ----
+        story.append(PageBreak())
+        story.extend(_reconciliation_section(reconciliation, tmpdir, ligne))
 
         story.append(PageBreak())
         story.extend(_occupancy_detail_section(kpis_officiels, ligne))

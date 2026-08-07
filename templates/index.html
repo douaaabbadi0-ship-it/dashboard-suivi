@@ -30,6 +30,13 @@
                 <input type="file" id="fileInput" multiple accept=".xlsx,.xlsm" hidden>
             </label>
             <ul id="fileList" class="file-list"></ul>
+
+            <label for="pdcFileInput" class="dropzone" id="pdcDropzone">
+                <span id="pdcDropzoneText">Plan de Charge SAP (.xlsx) — optionnel, pour comparer planifié / réalisé</span>
+                <input type="file" id="pdcFileInput" accept=".xlsx,.xlsm" hidden>
+            </label>
+            <ul id="pdcFileList" class="file-list"></ul>
+
             <button id="generateBtn" disabled>Analyser les rapports</button>
             <div id="status" class="status"></div>
         </div>
